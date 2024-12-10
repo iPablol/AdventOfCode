@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\Pablo\\source\\repos\\AdventOfCode\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{126B82AF-C517-410F-B1F5-D3DC0C537F00}|AdventOfCode\\AdventOfCode.csproj|c:\\users\\pablo\\source\\repos\\adventofcode\\adventofcode\\forms\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{126B82AF-C517-410F-B1F5-D3DC0C537F00}|AdventOfCode\\AdventOfCode.csproj|solutionrelative:adventofcode\\forms\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{126B82AF-C517-410F-B1F5-D3DC0C537F00}|AdventOfCode\\AdventOfCode.csproj|c:\\users\\pablo\\source\\repos\\adventofcode\\adventofcode\\2015\\week1\\day6.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{126B82AF-C517-410F-B1F5-D3DC0C537F00}|AdventOfCode\\AdventOfCode.csproj|solutionrelative:adventofcode\\2015\\week1\\day6.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -35,19 +39,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "MainForm.cs",
+              "DocumentMoniker": "C:\\Users\\Pablo\\source\\repos\\AdventOfCode\\AdventOfCode\\Forms\\MainForm.cs",
+              "RelativeDocumentMoniker": "AdventOfCode\\Forms\\MainForm.cs",
+              "ToolTip": "C:\\Users\\Pablo\\source\\repos\\AdventOfCode\\AdventOfCode\\Forms\\MainForm.cs*",
+              "RelativeToolTip": "AdventOfCode\\Forms\\MainForm.cs*",
+              "ViewState": "AgIAAFMAAAAAAAAAAIAwwGcAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-10T19:01:14.904Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Day6.cs",
               "DocumentMoniker": "C:\\Users\\Pablo\\source\\repos\\AdventOfCode\\AdventOfCode\\2015\\Week1\\Day6.cs",
               "RelativeDocumentMoniker": "AdventOfCode\\2015\\Week1\\Day6.cs",
               "ToolTip": "C:\\Users\\Pablo\\source\\repos\\AdventOfCode\\AdventOfCode\\2015\\Week1\\Day6.cs",
               "RelativeToolTip": "AdventOfCode\\2015\\Week1\\Day6.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAcAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABcAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-10T18:36:01.1Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Day5.cs",
               "DocumentMoniker": "C:\\Users\\Pablo\\source\\repos\\AdventOfCode\\AdventOfCode\\2015\\Week1\\Day5.cs",
               "RelativeDocumentMoniker": "AdventOfCode\\2015\\Week1\\Day5.cs",
@@ -55,23 +72,23 @@
               "RelativeToolTip": "AdventOfCode\\2015\\Week1\\Day5.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAqwBAAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-10T18:03:54.813Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-10T18:03:54.813Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MainForm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Pablo\\source\\repos\\AdventOfCode\\AdventOfCode\\Forms\\MainForm.cs",
+              "RelativeDocumentMoniker": "AdventOfCode\\Forms\\MainForm.cs",
+              "ToolTip": "C:\\Users\\Pablo\\source\\repos\\AdventOfCode\\AdventOfCode\\Forms\\MainForm.cs [Design]*",
+              "RelativeToolTip": "AdventOfCode\\Forms\\MainForm.cs [Design]*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-10T17:59:54.382Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "MainForm.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Pablo\\source\\repos\\AdventOfCode\\AdventOfCode\\Forms\\MainForm.cs",
-              "RelativeDocumentMoniker": "AdventOfCode\\Forms\\MainForm.cs",
-              "ToolTip": "C:\\Users\\Pablo\\source\\repos\\AdventOfCode\\AdventOfCode\\Forms\\MainForm.cs [Design]",
-              "RelativeToolTip": "AdventOfCode\\Forms\\MainForm.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-10T17:59:54.382Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Pablo\\source\\repos\\AdventOfCode\\AdventOfCode\\Program.cs",
               "RelativeDocumentMoniker": "AdventOfCode\\Program.cs",
@@ -83,7 +100,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Day1.cs",
               "DocumentMoniker": "C:\\Users\\Pablo\\source\\repos\\AdventOfCode\\AdventOfCode\\2015\\Week1\\Day1.cs",
               "RelativeDocumentMoniker": "AdventOfCode\\2015\\Week1\\Day1.cs",

@@ -93,9 +93,17 @@ namespace AdventOfCode
                 problem.singleSentenceSolution = sss.Checked;
                 Task<long>.Run(() =>
                 {
-                    problem.Solve();
-                    problem.PrintResult();
-                    return problem.GetResult();
+                    try
+                    {
+                        problem.Solve();
+                        problem.PrintResult();
+                        return problem.GetResult();
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                        return 0;
+                    }
                 })
                 .ContinueWith((result) =>
                 {

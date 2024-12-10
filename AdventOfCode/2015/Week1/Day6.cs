@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace AdventOfCode._2015
 {
-    class Day6
+    class Day6() : Problem("",
+        "")
     {
+        protected override void Solve()
+        {
+
+        }
     }
 }

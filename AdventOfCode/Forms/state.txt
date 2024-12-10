@@ -1,0 +1,5 @@
+year=2015
+day=4
+testing=False
+part2=True
+sss=False

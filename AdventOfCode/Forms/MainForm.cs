@@ -58,6 +58,7 @@ namespace AdventOfCode
                     case "sss": sss.Checked = bool.Parse(value); break;
                 }
             }
+            UpdateProblem();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -68,24 +69,52 @@ namespace AdventOfCode
         private void yearBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             dayBox.Enabled = true;
-            runButton.Enabled = false;
             dayBox.Items.Clear();
+            dayBox.SelectedItem = "";
             var days = Assembly.GetExecutingAssembly().GetTypes().Where(x => x.Namespace.Contains((string)yearBox.SelectedItem)).Select(x => Regex.Match(x.Name, "Day[0-9]+$").Value).ToList().ConvertAll(x => x.Replace("Day", ""));
             days.RemoveAll(x => x == "");
             days.Sort((a, b) => int.Parse(a).CompareTo(int.Parse(b)));
             dayBox.Items.AddRange(days.ToArray());
+            UpdateProblem();
         }
 
         private void dayBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            runButton.Enabled = true;
+            UpdateProblem();
+        }
+
+        private void UpdateProblem()
+        {
+            try
+            {
+                if (day == null || year == null)
+                {
+                    problem = null;
+                    runButton.Enabled = false;
+                    return;
+                }
+                problem = (Problem?)Assembly.GetExecutingAssembly().GetTypes().Where(x => x.IsSubclassOf(typeof(Problem)) && x.FullName == $"AdventOfCode._{year}.Day{day}").First().GetConstructor([])?.Invoke(null);
+                runButton.Enabled = true;
+            }
+            catch { }
+            finally
+            {
+                UpdateSSSCheckBox();
+            }
+        }
+
+        private void UpdateSSSCheckBox()
+        {
+            sss.Enabled = problem == null ? false : problem.ImplementsSSS();
+            if (!sss.Enabled)
+            {
+                sss.Checked = false;
+            }
         }
 
         private void runButton_Click(object sender, EventArgs e)
         {
-            string year = (string)yearBox.SelectedItem;
-            string day = (string)dayBox.SelectedItem;
-            var problem = (Problem?)Assembly.GetExecutingAssembly().GetTypes().Where(x => x.IsSubclassOf(typeof(Problem)) && x.FullName == $"AdventOfCode._{year}.Day{day}").First().GetConstructor([])?.Invoke(null);
+            UpdateProblem();
             if (problem is not null)
             {
                 problem.testing = testing.Checked;
@@ -127,6 +156,10 @@ namespace AdventOfCode
         {
             SaveState();
         }
+
+        private string year => (string)yearBox.SelectedItem;
+        private string day => (string)dayBox.SelectedItem;
+        private Problem problem;
     }
 
     internal partial class CustomWriter : TextWriter

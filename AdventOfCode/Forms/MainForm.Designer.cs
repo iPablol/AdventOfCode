@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             ListViewGroup listViewGroup1 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             yearLabel = new Label();
             yearBox = new ComboBox();
             console = new RichTextBox();
@@ -44,10 +45,10 @@
             // yearLabel
             // 
             yearLabel.AutoSize = true;
-            yearLabel.Location = new Point(14, 47);
-            yearLabel.Margin = new Padding(4, 0, 4, 0);
+            yearLabel.Location = new Point(16, 63);
+            yearLabel.Margin = new Padding(5, 0, 5, 0);
             yearLabel.Name = "yearLabel";
-            yearLabel.Size = new Size(29, 15);
+            yearLabel.Size = new Size(37, 20);
             yearLabel.TabIndex = 0;
             yearLabel.Text = "Year";
             // 
@@ -55,29 +56,30 @@
             // 
             yearBox.DropDownStyle = ComboBoxStyle.DropDownList;
             yearBox.FormattingEnabled = true;
-            yearBox.Location = new Point(55, 44);
-            yearBox.Margin = new Padding(4, 3, 4, 3);
+            yearBox.Location = new Point(63, 59);
+            yearBox.Margin = new Padding(5, 4, 5, 4);
             yearBox.Name = "yearBox";
-            yearBox.Size = new Size(97, 23);
+            yearBox.Size = new Size(110, 28);
             yearBox.TabIndex = 1;
             yearBox.SelectedIndexChanged += yearBox_SelectedIndexChanged;
             // 
             // console
             // 
             console.Dock = DockStyle.Bottom;
-            console.Location = new Point(0, 111);
+            console.Location = new Point(0, 149);
+            console.Margin = new Padding(3, 4, 3, 4);
             console.Name = "console";
             console.ReadOnly = true;
-            console.Size = new Size(933, 408);
+            console.Size = new Size(1066, 543);
             console.TabIndex = 2;
             console.Text = "";
             // 
             // dayLabel
             // 
             dayLabel.AutoSize = true;
-            dayLabel.Location = new Point(14, 85);
+            dayLabel.Location = new Point(16, 113);
             dayLabel.Name = "dayLabel";
-            dayLabel.Size = new Size(27, 15);
+            dayLabel.Size = new Size(35, 20);
             dayLabel.TabIndex = 3;
             dayLabel.Text = "Day";
             // 
@@ -86,18 +88,20 @@
             dayBox.DropDownStyle = ComboBoxStyle.DropDownList;
             dayBox.Enabled = false;
             dayBox.FormattingEnabled = true;
-            dayBox.Location = new Point(55, 82);
+            dayBox.Location = new Point(63, 109);
+            dayBox.Margin = new Padding(3, 4, 3, 4);
             dayBox.Name = "dayBox";
-            dayBox.Size = new Size(58, 23);
+            dayBox.Size = new Size(66, 28);
             dayBox.TabIndex = 4;
             dayBox.SelectedIndexChanged += dayBox_SelectedIndexChanged;
             // 
             // runButton
             // 
             runButton.Enabled = false;
-            runButton.Location = new Point(206, 81);
+            runButton.Location = new Point(235, 108);
+            runButton.Margin = new Padding(3, 4, 3, 4);
             runButton.Name = "runButton";
-            runButton.Size = new Size(75, 23);
+            runButton.Size = new Size(86, 31);
             runButton.TabIndex = 5;
             runButton.Text = "Run";
             runButton.UseVisualStyleBackColor = true;
@@ -108,9 +112,10 @@
             testing.AutoSize = true;
             testing.Checked = true;
             testing.CheckState = CheckState.Checked;
-            testing.Location = new Point(206, 46);
+            testing.Location = new Point(235, 61);
+            testing.Margin = new Padding(3, 4, 3, 4);
             testing.Name = "testing";
-            testing.Size = new Size(71, 19);
+            testing.Size = new Size(88, 24);
             testing.TabIndex = 6;
             testing.Text = "Example";
             testing.UseVisualStyleBackColor = true;
@@ -118,9 +123,10 @@
             // part2
             // 
             part2.AutoSize = true;
-            part2.Location = new Point(317, 46);
+            part2.Location = new Point(362, 61);
+            part2.Margin = new Padding(3, 4, 3, 4);
             part2.Name = "part2";
-            part2.Size = new Size(53, 19);
+            part2.Size = new Size(66, 24);
             part2.TabIndex = 7;
             part2.Text = "part2";
             part2.UseVisualStyleBackColor = true;
@@ -128,9 +134,11 @@
             // sss
             // 
             sss.AutoSize = true;
-            sss.Location = new Point(317, 81);
+            sss.Enabled = false;
+            sss.Location = new Point(362, 108);
+            sss.Margin = new Padding(3, 4, 3, 4);
             sss.Name = "sss";
-            sss.Size = new Size(156, 19);
+            sss.Size = new Size(195, 24);
             sss.TabIndex = 8;
             sss.Text = "Single Sentence Solution";
             sss.UseVisualStyleBackColor = true;
@@ -143,9 +151,10 @@
             listViewGroup1.Name = "resultsGroup";
             listViewGroup1.Subtitle = "Results";
             resultsList.Groups.AddRange(new ListViewGroup[] { listViewGroup1 });
-            resultsList.Location = new Point(479, 0);
+            resultsList.Location = new Point(563, 0);
+            resultsList.Margin = new Padding(3, 4, 3, 4);
             resultsList.Name = "resultsList";
-            resultsList.Size = new Size(454, 111);
+            resultsList.Size = new Size(503, 149);
             resultsList.TabIndex = 9;
             resultsList.UseCompatibleStateImageBehavior = false;
             resultsList.View = View.List;
@@ -153,9 +162,9 @@
             // 
             // MainForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(933, 519);
+            ClientSize = new Size(1066, 692);
             Controls.Add(resultsList);
             Controls.Add(sss);
             Controls.Add(part2);
@@ -166,9 +175,10 @@
             Controls.Add(console);
             Controls.Add(yearBox);
             Controls.Add(yearLabel);
-            Margin = new Padding(4, 3, 4, 3);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(5, 4, 5, 4);
             Name = "MainForm";
-            Text = "Form1";
+            Text = "Advent of Code";
             FormClosing += MainForm_FormClosing;
             Load += MainForm_Load;
             ResumeLayout(false);

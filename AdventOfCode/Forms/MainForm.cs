@@ -207,13 +207,14 @@ namespace AdventOfCode
         private ConcurrentQueue<string> consoleBuffer = [];
 
         private int maxUpdates = 100;
+        private int updateTimeIntervalMs = 5;
 
         public CustomWriter(MethodInfo output, object instance)
         {
             this.output = output;
             this.instance = instance;
             updateTimer = new System.Windows.Forms.Timer();
-            updateTimer.Interval = 20; // Set the timer interval to 100ms
+            updateTimer.Interval = updateTimeIntervalMs;
             updateTimer.Tick += UpdateConsoleBuffer;
             updateTimer.Start();
         }

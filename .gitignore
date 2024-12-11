@@ -38,3 +38,6 @@ node_modules/
 # Ignore files related to ASP.NET Core (if applicable)
 project.lock.json
 project.json
+/AdventOfCode/bin
+/.vs
+/AdventOfCode/obj

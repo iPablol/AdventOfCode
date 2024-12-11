@@ -40,6 +40,7 @@
             part2 = new CheckBox();
             sss = new CheckBox();
             resultsList = new ListView();
+            clearButton = new Button();
             SuspendLayout();
             // 
             // yearLabel
@@ -98,7 +99,7 @@
             // runButton
             // 
             runButton.Enabled = false;
-            runButton.Location = new Point(235, 108);
+            runButton.Location = new Point(451, 102);
             runButton.Margin = new Padding(3, 4, 3, 4);
             runButton.Name = "runButton";
             runButton.Size = new Size(86, 31);
@@ -135,7 +136,7 @@
             // 
             sss.AutoSize = true;
             sss.Enabled = false;
-            sss.Location = new Point(362, 108);
+            sss.Location = new Point(233, 106);
             sss.Margin = new Padding(3, 4, 3, 4);
             sss.Name = "sss";
             sss.Size = new Size(195, 24);
@@ -160,11 +161,22 @@
             resultsList.View = View.List;
             resultsList.SelectedIndexChanged += resultsList_SelectedIndexChanged;
             // 
+            // clearButton
+            // 
+            clearButton.Location = new Point(451, 59);
+            clearButton.Name = "clearButton";
+            clearButton.Size = new Size(86, 29);
+            clearButton.TabIndex = 10;
+            clearButton.Text = "Clear";
+            clearButton.UseVisualStyleBackColor = true;
+            clearButton.Click += clearButton_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1066, 692);
+            Controls.Add(clearButton);
             Controls.Add(resultsList);
             Controls.Add(sss);
             Controls.Add(part2);
@@ -197,6 +209,7 @@
         private CheckBox part2;
         private CheckBox sss;
         private ListView resultsList;
+        private Button clearButton;
     }
 }
 

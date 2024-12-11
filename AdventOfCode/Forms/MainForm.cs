@@ -21,7 +21,7 @@ namespace AdventOfCode
         {
             InitializeComponent();
             RedirectConsole();
-            var years = Assembly.GetExecutingAssembly().GetTypes().Select(t => Regex.Match(t.Namespace, "[0-9]+").Value).Distinct().Where(x => x != "").ToList();
+            var years = Assembly.GetExecutingAssembly().GetTypes().Select(t => Regex.Match(t?.Namespace ?? "", "[0-9]+").Value).Distinct().Where(x => x != "").ToList();
             years.Sort((a, b) => int.Parse(a).CompareTo(int.Parse(b)));
             yearBox.Items.AddRange(years.ToArray());
             LoadState();
@@ -71,7 +71,7 @@ namespace AdventOfCode
             dayBox.Enabled = true;
             dayBox.Items.Clear();
             dayBox.SelectedItem = "";
-            var days = Assembly.GetExecutingAssembly().GetTypes().Where(x => x.Namespace.Contains((string)yearBox.SelectedItem)).Select(x => Regex.Match(x.Name, "Day[0-9]+$").Value).ToList().ConvertAll(x => x.Replace("Day", ""));
+            var days = Assembly.GetExecutingAssembly().GetTypes().Where(x => x?.Namespace?.Contains((string)yearBox.SelectedItem) ?? false).Select(x => Regex.Match(x.Name, "Day[0-9]+$").Value).ToList().ConvertAll(x => x.Replace("Day", ""));
             days.RemoveAll(x => x == "");
             days.Sort((a, b) => int.Parse(a).CompareTo(int.Parse(b)));
             dayBox.Items.AddRange(days.ToArray());
@@ -122,17 +122,17 @@ namespace AdventOfCode
                 problem.singleSentenceSolution = sss.Checked;
                 Task<long>.Run(() =>
                 {
-                    try
-                    {
-                        problem.Solve();
-                        problem.PrintResult();
-                        return problem.GetResult();
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                        return 0;
-                    }
+                    //try
+                    //{
+                    problem.Solve();
+                    problem.PrintResult();
+                    return problem.GetResult();
+                    //}
+                    //catch (Exception ex)
+                    //{
+                    //    Console.WriteLine(ex.Message);
+                    //    return 0;
+                    //}
                 })
                 .ContinueWith((result) =>
                 {
@@ -160,6 +160,12 @@ namespace AdventOfCode
         private string year => (string)yearBox.SelectedItem;
         private string day => (string)dayBox.SelectedItem;
         private Problem problem;
+
+        private void clearButton_Click(object sender, EventArgs e)
+        {
+            console.Clear();
+            resultsList.Clear();
+        }
     }
 
     internal partial class CustomWriter : TextWriter

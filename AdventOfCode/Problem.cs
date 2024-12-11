@@ -14,6 +14,21 @@ namespace AdventOfCode
         public bool part2 = false;
         public bool singleSentenceSolution = false; // not every problem has one implemented
 
+        private (int year, int day)? _id = null;
+
+        public (int year, int day) id
+        {
+            get
+            {
+                if (_id == null)
+                {
+                    Match match = Regex.Match(GetType().FullName, "AdventOfCode._([0-9]+).Day([0-9]+)");
+                    _id = (int.Parse(match.Groups[1].Value), int.Parse(match.Groups[2].Value));
+                }
+                return _id.Value;
+            }
+        }
+
         public bool part1 => !part2;
 
         public long GetResult() => result;
@@ -37,12 +52,13 @@ namespace AdventOfCode
 
         public virtual void PrintResult()
         {
-            Console.WriteLine($"{Regex.Replace(GetType().FullName, "AdventOfCode._([0-9]*).Day([0-9]*)", "---Year $1---\n" +
-                "Day $2")} ({(part1 ? "part 1" : "part 2")}{(testing ? ", example" : "")}{(singleSentenceSolution ? ", SSS" : "")}):\n" +
-                $"{result}\n\n" +
-                $"In {timer.ElapsedMilliseconds} milliseconds ({timer.ElapsedTicks} ticks)\n\n");
+            Console.WriteLine($"{GetTitle()}\n {GetSubtitle()}:\n{result}\n\nIn {GetTime()}\n\n");
             timer.Stop();
         }
+
+        public string GetTitle() => $"---Year {id.year}---";
+        public string GetSubtitle() => $"Day {id.day} ({(part1 ? "part 1" : "part 2")}{(testing ? ", example" : "")}{(singleSentenceSolution ? ", SSS" : "")})";
+        public string GetTime() => $"{timer.ElapsedMilliseconds} ms ({timer.ElapsedTicks} ticks)";
 
         public void Splitlines() => lines = input.Split("\r\n");
 

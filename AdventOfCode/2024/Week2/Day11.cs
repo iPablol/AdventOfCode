@@ -14,7 +14,7 @@ namespace AdventOfCode._2024
         private List<long> stones;
         private Dictionary<long, long> counts;
 
-        // I bruteforced part1 and used memoization for part2
+        // I bruteforced part1 and used memoization for part2 (not technically memoization)
         protected override void Solve()
         {
             if (part1)

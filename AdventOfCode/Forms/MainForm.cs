@@ -63,7 +63,7 @@ namespace AdventOfCode
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-
+            ResizeConsoleAndList();
         }
 
         private void yearBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -120,36 +120,46 @@ namespace AdventOfCode
                 problem.testing = testing.Checked;
                 problem.part2 = part2.Checked;
                 problem.singleSentenceSolution = sss.Checked;
-                Task<long>.Run(() =>
+                Problem prob = problem;
+                Task.Run(() =>
                 {
-                    //try
-                    //{
-                    problem.Solve();
-                    problem.PrintResult();
-                    return problem.GetResult();
-                    //}
-                    //catch (Exception ex)
-                    //{
-                    //    Console.WriteLine(ex.Message);
-                    //    return 0;
-                    //}
+                    prob.Solve();
+                    prob.PrintResult();
+                    return prob;
                 })
                 .ContinueWith((result) =>
                 {
-                    resultsList.Items.Add(new ListViewItem()
-                    {
-                        Text = result.Result.ToString(),
-                        Group = resultsList.Groups[0],
-                    });
+                    Problem prob = result.Result;
+                    UpdateResultsList(prob);
                 }, TaskScheduler.FromCurrentSynchronizationContext());
                 Console.WriteLine($"{(testing.Checked ? "Testing" : "Solving")} part {(part2.Checked ? 2 : 1)} of day {day} of {year}");
             }
         }
 
+        private void UpdateResultsList(Problem prob)
+        {
+            ListViewGroup group = resultsList.Groups[prob.GetTitle()];
+            if (group == null)
+            {
+                resultsList.Groups.Add((group = new ListViewGroup(prob.GetTitle(), HorizontalAlignment.Center) { Name = prob.GetTitle() }));
+            }
+            ListViewItem item = new ListViewItem()
+            {
+                Text = "Day " + prob.id.day,
+                Group = group
+            };
+            item.SubItems.Add(new ListViewItem.ListViewSubItem(item, prob.part1 ? "1" : "2"));
+            item.SubItems.Add(new ListViewItem.ListViewSubItem(item, prob.testing ? "Yes" : "No"));
+            item.SubItems.Add(new ListViewItem.ListViewSubItem(item, prob.singleSentenceSolution ? "Yes" : "No"));
+            item.SubItems.Add(new ListViewItem.ListViewSubItem(item, prob.GetTime()));
+            item.SubItems.Add(new ListViewItem.ListViewSubItem(item, prob.GetResult().ToString()) { Name = "result" });
+            resultsList.Items.Add(item);
+        }
+
         private void resultsList_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (resultsList.SelectedItems.Count > 0)
-                Clipboard.SetText(resultsList.SelectedItems[0].Text);
+                Clipboard.SetText(resultsList.SelectedItems[0].SubItems["result"].Text);
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -164,8 +174,29 @@ namespace AdventOfCode
         private void clearButton_Click(object sender, EventArgs e)
         {
             console.Clear();
-            resultsList.Clear();
+            resultsList.Items.Clear();
+            resultsList.Groups.Clear();
         }
+
+        private void MainForm_Resize(object sender, EventArgs e)
+        {
+            ResizeConsoleAndList();
+        }
+
+        private void ResizeConsoleAndList()
+        {
+            console.Height = (int)(ClientSize.Height * consoleProportion);
+            console.Width = ClientSize.Width * (int)(1 - ClientSize.Height * consoleProportion);
+            console.Top = console.Height;
+            console.Left = 0;
+
+            resultsList.Height = ClientSize.Height / 2;
+            resultsList.Width = ClientSize.Width / 2;
+            resultsList.Top = 0;
+            resultsList.Left = ClientSize.Width / 2;
+        }
+
+        private static float consoleProportion = 0.7f;
     }
 
     internal partial class CustomWriter : TextWriter

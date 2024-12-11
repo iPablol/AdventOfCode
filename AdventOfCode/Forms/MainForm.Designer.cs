@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ListViewGroup listViewGroup1 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
+            ListViewGroup listViewGroup1 = new ListViewGroup("---Year 2024---", HorizontalAlignment.Left);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             yearLabel = new Label();
             yearBox = new ComboBox();
@@ -40,7 +40,13 @@
             part2 = new CheckBox();
             sss = new CheckBox();
             resultsList = new ListView();
+            dayColumn = new ColumnHeader();
+            partColumn = new ColumnHeader();
+            exampleColumn = new ColumnHeader();
+            sssColumn = new ColumnHeader();
+            resultColumn = new ColumnHeader();
             clearButton = new Button();
+            timeColumn = new ColumnHeader();
             SuspendLayout();
             // 
             // yearLabel
@@ -99,7 +105,7 @@
             // runButton
             // 
             runButton.Enabled = false;
-            runButton.Location = new Point(451, 102);
+            runButton.Location = new Point(419, 102);
             runButton.Margin = new Padding(3, 4, 3, 4);
             runButton.Name = "runButton";
             runButton.Size = new Size(86, 31);
@@ -113,7 +119,7 @@
             testing.AutoSize = true;
             testing.Checked = true;
             testing.CheckState = CheckState.Checked;
-            testing.Location = new Point(235, 61);
+            testing.Location = new Point(202, 61);
             testing.Margin = new Padding(3, 4, 3, 4);
             testing.Name = "testing";
             testing.Size = new Size(88, 24);
@@ -124,7 +130,7 @@
             // part2
             // 
             part2.AutoSize = true;
-            part2.Location = new Point(362, 61);
+            part2.Location = new Point(331, 61);
             part2.Margin = new Padding(3, 4, 3, 4);
             part2.Name = "part2";
             part2.Size = new Size(66, 24);
@@ -136,7 +142,7 @@
             // 
             sss.AutoSize = true;
             sss.Enabled = false;
-            sss.Location = new Point(233, 106);
+            sss.Location = new Point(202, 106);
             sss.Margin = new Padding(3, 4, 3, 4);
             sss.Name = "sss";
             sss.Size = new Size(195, 24);
@@ -146,30 +152,64 @@
             // 
             // resultsList
             // 
+            resultsList.Activation = ItemActivation.TwoClick;
+            resultsList.Columns.AddRange(new ColumnHeader[] { dayColumn, partColumn, exampleColumn, sssColumn, timeColumn, resultColumn });
             resultsList.Dock = DockStyle.Right;
-            listViewGroup1.CollapsedState = ListViewGroupCollapsedState.Expanded;
-            listViewGroup1.Header = "ListViewGroup";
-            listViewGroup1.Name = "resultsGroup";
-            listViewGroup1.Subtitle = "Results";
+            listViewGroup1.Header = "---Year 2024---";
+            listViewGroup1.Name = "testgroup";
             resultsList.Groups.AddRange(new ListViewGroup[] { listViewGroup1 });
             resultsList.Location = new Point(563, 0);
             resultsList.Margin = new Padding(3, 4, 3, 4);
+            resultsList.MultiSelect = false;
             resultsList.Name = "resultsList";
             resultsList.Size = new Size(503, 149);
             resultsList.TabIndex = 9;
             resultsList.UseCompatibleStateImageBehavior = false;
-            resultsList.View = View.List;
+            resultsList.View = View.Details;
             resultsList.SelectedIndexChanged += resultsList_SelectedIndexChanged;
+            // 
+            // dayColumn
+            // 
+            dayColumn.Text = "Day";
+            dayColumn.Width = 50;
+            // 
+            // partColumn
+            // 
+            partColumn.Text = "Part";
+            partColumn.TextAlign = HorizontalAlignment.Center;
+            partColumn.Width = 50;
+            // 
+            // exampleColumn
+            // 
+            exampleColumn.Text = "Example";
+            exampleColumn.TextAlign = HorizontalAlignment.Center;
+            exampleColumn.Width = 80;
+            // 
+            // sssColumn
+            // 
+            sssColumn.Text = "SSS";
+            sssColumn.TextAlign = HorizontalAlignment.Center;
+            sssColumn.Width = 50;
+            // 
+            // resultColumn
+            // 
+            resultColumn.Text = "Result";
+            resultColumn.Width = 250;
             // 
             // clearButton
             // 
-            clearButton.Location = new Point(451, 59);
+            clearButton.Location = new Point(419, 59);
             clearButton.Name = "clearButton";
             clearButton.Size = new Size(86, 29);
             clearButton.TabIndex = 10;
             clearButton.Text = "Clear";
             clearButton.UseVisualStyleBackColor = true;
             clearButton.Click += clearButton_Click;
+            // 
+            // timeColumn
+            // 
+            timeColumn.Text = "Execution Time";
+            timeColumn.Width = 120;
             // 
             // MainForm
             // 
@@ -193,6 +233,7 @@
             Text = "Advent of Code";
             FormClosing += MainForm_FormClosing;
             Load += MainForm_Load;
+            Resize += MainForm_Resize;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -210,6 +251,12 @@
         private CheckBox sss;
         private ListView resultsList;
         private Button clearButton;
+        private ColumnHeader dayColumn;
+        private ColumnHeader resultColumn;
+        private ColumnHeader partColumn;
+        private ColumnHeader exampleColumn;
+        private ColumnHeader sssColumn;
+        private ColumnHeader timeColumn;
     }
 }
 

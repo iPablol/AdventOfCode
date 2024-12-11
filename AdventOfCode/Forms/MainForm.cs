@@ -29,7 +29,7 @@ namespace AdventOfCode
 
         private void RedirectConsole()
         {
-            Console.SetOut(new CustomWriter(console.GetType().GetProperty(nameof(console.Text)), console));
+            Console.SetOut(new CustomWriter(console.GetType().GetMethod(nameof(console.AppendText)), console));
         }
 
         private void SaveState()
@@ -201,26 +201,37 @@ namespace AdventOfCode
 
     internal partial class CustomWriter : TextWriter
     {
-        private PropertyInfo output;
+        private MethodInfo output;
         private object instance;
         private System.Windows.Forms.Timer updateTimer;
         private ConcurrentQueue<string> consoleBuffer = [];
 
-        public CustomWriter(PropertyInfo output, object instance)
+        private int maxUpdates = 100;
+
+        public CustomWriter(MethodInfo output, object instance)
         {
             this.output = output;
             this.instance = instance;
             updateTimer = new System.Windows.Forms.Timer();
-            updateTimer.Interval = 100; // Set the timer interval to 100ms
+            updateTimer.Interval = 20; // Set the timer interval to 100ms
             updateTimer.Tick += UpdateConsoleBuffer;
             updateTimer.Start();
         }
 
         private void UpdateConsoleBuffer(object? sender, EventArgs e)
         {
+            int iterations = 0;
             while (consoleBuffer.TryDequeue(out string update))
             {
-                output.SetMethod.Invoke(instance, [(string)output.GetValue(instance) + update]);
+                output.Invoke(instance, [update]);
+                if (iterations++ > maxUpdates && update.Contains('\n'))
+                {
+                    break;
+                }
+            }
+            if (iterations > 0)
+            {
+                (instance as RichTextBox).ScrollToCaret();
             }
         }
 

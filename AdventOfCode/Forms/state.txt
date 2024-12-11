@@ -1,5 +1,5 @@
 year=2024
-day=9
-testing=True
-part2=False
+day=6
+testing=False
+part2=True
 sss=False

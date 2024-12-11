@@ -44,9 +44,9 @@
             partColumn = new ColumnHeader();
             exampleColumn = new ColumnHeader();
             sssColumn = new ColumnHeader();
+            timeColumn = new ColumnHeader();
             resultColumn = new ColumnHeader();
             clearButton = new Button();
-            timeColumn = new ColumnHeader();
             SuspendLayout();
             // 
             // yearLabel
@@ -191,6 +191,11 @@
             sssColumn.TextAlign = HorizontalAlignment.Center;
             sssColumn.Width = 50;
             // 
+            // timeColumn
+            // 
+            timeColumn.Text = "Execution Time";
+            timeColumn.Width = 120;
+            // 
             // resultColumn
             // 
             resultColumn.Text = "Result";
@@ -205,11 +210,6 @@
             clearButton.Text = "Clear";
             clearButton.UseVisualStyleBackColor = true;
             clearButton.Click += clearButton_Click;
-            // 
-            // timeColumn
-            // 
-            timeColumn.Text = "Execution Time";
-            timeColumn.Width = 120;
             // 
             // MainForm
             // 

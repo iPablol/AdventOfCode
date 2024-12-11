@@ -14,7 +14,7 @@ namespace AdventOfCode._2024
         protected override void Solve()
         {
             ConstructMatrix();
-            PrintMatrix(matrix);
+            //PrintMatrix(matrix);
             (guardPos, guard) = FindGuard();
             (int x, int y) newPos = guardPos;
             do
@@ -42,7 +42,7 @@ namespace AdventOfCode._2024
                 }
             }
             while (InBounds(newPos.x, newPos.y));
-            PrintMap(matrix);
+            //PrintMap(matrix);
             if (part1)
             {
                 result = matrix.MatrixFlattened().Where(x => x == 'X').Count();

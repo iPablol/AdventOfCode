@@ -1,5 +1,0 @@
-year=2015
-day=5
-testing=False
-part2=False
-sss=False

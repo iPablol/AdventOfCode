@@ -66,3 +66,4 @@ AdventOfCode/obj/Debug/net8.0-windows/AdventOfCode.AssemblyInfo.cs
 *.dll
 *.pdb
 AdventOfCode/obj/Debug/net8.0-windows/AdventOfCode.sourcelink.json
+/AdventOfCode/bin

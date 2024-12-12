@@ -53,3 +53,16 @@ AdventOfCode/obj/Debug/net8.0-windows/AdventOfCode.GeneratedMSBuildEditorConfig.
 AdventOfCode/obj/Debug/net8.0-windows/AdventOfCode.sourcelink.json
 AdventOfCode/obj/project.assets.json
 AdventOfCode/obj/project.nuget.cache
+.vs/AdventOfCode/v17/.suo
+*.suo
+.vs/AdventOfCode/v17/DocumentLayout.backup.json
+.vs/AdventOfCode/v17/DocumentLayout.json
+AdventOfCode/bin/Debug/net8.0-windows/AdventOfCode.dll
+AdventOfCode/bin/Debug/net8.0-windows/AdventOfCode.exe
+AdventOfCode/bin/Debug/net8.0-windows/AdventOfCode.pdb
+AdventOfCode/Forms/state.txt
+AdventOfCode/obj/Debug/net8.0-windows/AdventOfCode.AssemblyInfo.cs
+*.cache
+*.dll
+*.pdb
+AdventOfCode/obj/Debug/net8.0-windows/AdventOfCode.sourcelink.json

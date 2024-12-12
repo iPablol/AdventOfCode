@@ -148,19 +148,25 @@ namespace AdventOfCode
         public int OutOfBoundsAdjacentCount((int x, int y) position)
         {
             int result = 0;
-            (int x, int y) pos = (position.x - 1, position.y);
-            if (!InBounds(pos)) { result++; }
-            pos = (position.x, position.y - 1);
-            if (!InBounds(pos)) { result++; }
-            pos = (position.x + 1, position.y);
-            if (!InBounds(pos)) { result++; }
-            pos = (position.x, position.y + 1);
-            if (!InBounds(pos)) { result++; }
+            if (North(position) == null) { result++; }
+            if (East(position) == null) { result++; }
+            if (South(position) == null) { result++; }
+            if (West(position) == null) { result++; }
             return result;
         }
 
         protected bool InBounds(int x, int y) => x >= 0 && y >= 0 && x < columns && y < rows;
         public bool InBounds((int x, int y) pos) => pos.x >= 0 && pos.y >= 0 && pos.x < columns && pos.y < rows;
+
+        public char? North((int x, int y) pos) => InBounds(pos.x, pos.y - 1) ? matrix[pos.x, pos.y - 1] : null;
+        public char? South((int x, int y) pos) => InBounds(pos.x, pos.y + 1) ? matrix[pos.x, pos.y + 1] : null;
+        public char? East((int x, int y) pos) => InBounds(pos.x + 1, pos.y) ? matrix[pos.x + 1, pos.y] : null;
+        public char? West((int x, int y) pos) => InBounds(pos.x - 1, pos.y) ? matrix[pos.x - 1, pos.y] : null;
+
+        public char? NorthEast((int x, int y) pos) => InBounds(pos.x + 1, pos.y - 1) ? matrix[pos.x + 1, pos.y - 1] : null;
+        public char? SouthEast((int x, int y) pos) => InBounds(pos.x + 1, pos.y + 1) ? matrix[pos.x + 1, pos.y + 1] : null;
+        public char? NorthWest((int x, int y) pos) => InBounds(pos.x - 1, pos.y - 1) ? matrix[pos.x - 1, pos.y - 1] : null;
+        public char? SouthWest((int x, int y) pos) => InBounds(pos.x - 1, pos.y + 1) ? matrix[pos.x, pos.y + 1] : null;
 
         public char MatrixAt((int x, int y) position) => matrix[position.x, position.y];
 

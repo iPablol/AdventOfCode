@@ -47,6 +47,10 @@ namespace AdventOfCode
 
         private void LoadState()
         {
+            if (!File.Exists(savePath))
+            {
+                File.Create(savePath).Close();
+            }
             foreach (string line in File.ReadLines(savePath))
             {
                 string fieldName = line.Split('=')[0];

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AdventOfCode.Forms;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,6 +26,7 @@ namespace AdventOfCode
             years.Sort((a, b) => int.Parse(a).CompareTo(int.Parse(b)));
             yearBox.Items.AddRange(years.ToArray());
             LoadState();
+            client = new HttpClient();
         }
 
         private void RedirectConsole()
@@ -91,10 +93,12 @@ namespace AdventOfCode
                 {
                     problem = null;
                     runButton.Enabled = false;
+                    promptButton.Enabled = false;
                     return;
                 }
                 problem = (Problem?)Assembly.GetExecutingAssembly().GetTypes().Where(x => x.IsSubclassOf(typeof(Problem)) && x.FullName == $"AdventOfCode._{year}.Day{day}").First().GetConstructor([])?.Invoke(null);
                 runButton.Enabled = true;
+                promptButton.Enabled = true;
             }
             catch { }
             finally
@@ -197,6 +201,32 @@ namespace AdventOfCode
         }
 
         private static float consoleProportion = 0.7f;
+
+        private void promptButton_Click(object sender, EventArgs e)
+        {
+            string y = year;
+            string d = day;
+            Task.Run(async () =>
+            {
+                string result = "None";
+                try
+                {
+                    result = await client.GetStringAsync($"https://adventofcode.com/{y}/day/{d}");
+                    result = Regex.Match(result, "<main>.*?</main>", RegexOptions.Singleline).Value;
+                }
+                catch (Exception ex)
+                {
+                    result = ex.Message;
+                }
+                return result;
+            }).ContinueWith(t =>
+            {
+                Prompt prompt = new (t.Result);
+                prompt.ShowDialog();
+            }, TaskScheduler.FromCurrentSynchronizationContext());
+        }
+
+        private HttpClient client;
     }
 
     internal partial class CustomWriter : TextWriter

@@ -1,6 +1,7 @@
 ﻿
 
 using System.Diagnostics;
+using System.Numerics;
 using System.Text.RegularExpressions;
 
 namespace AdventOfCode
@@ -130,7 +131,38 @@ namespace AdventOfCode
             return flattened;
         }
 
+        public List<(int x, int y)> AdjacentPositions((int x, int y) position)
+        {
+            List<(int x, int y)> result = [];
+            (int x, int y) pos = (position.x - 1, position.y);
+            if (InBounds(pos)) { result.Add(pos); }
+            pos = (position.x, position.y - 1);
+            if (InBounds(pos)) { result.Add(pos); }
+            pos = (position.x + 1, position.y);
+            if (InBounds(pos)) { result.Add(pos); }
+            pos = (position.x, position.y + 1);
+            if (InBounds(pos)) { result.Add(pos); }
+            return result;
+        }
+
+        public int OutOfBoundsAdjacentCount((int x, int y) position)
+        {
+            int result = 0;
+            (int x, int y) pos = (position.x - 1, position.y);
+            if (!InBounds(pos)) { result++; }
+            pos = (position.x, position.y - 1);
+            if (!InBounds(pos)) { result++; }
+            pos = (position.x + 1, position.y);
+            if (!InBounds(pos)) { result++; }
+            pos = (position.x, position.y + 1);
+            if (!InBounds(pos)) { result++; }
+            return result;
+        }
+
         protected bool InBounds(int x, int y) => x >= 0 && y >= 0 && x < columns && y < rows;
+        public bool InBounds((int x, int y) pos) => pos.x >= 0 && pos.y >= 0 && pos.x < columns && pos.y < rows;
+
+        public char MatrixAt((int x, int y) position) => matrix[position.x, position.y];
 
         public int columns => matrix?.GetLength(0) ?? 0;
         public int rows => matrix?.GetLength(1) ?? 0;

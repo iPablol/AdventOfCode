@@ -3,20 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\ptori\\source\\repos\\AdventOfCode\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{126B82AF-C517-410F-B1F5-D3DC0C537F00}|AdventOfCode\\AdventOfCode.csproj|c:\\users\\ptori\\source\\repos\\adventofcode\\adventofcode\\forms\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{126B82AF-C517-410F-B1F5-D3DC0C537F00}|AdventOfCode\\AdventOfCode.csproj|solutionrelative:adventofcode\\forms\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{126B82AF-C517-410F-B1F5-D3DC0C537F00}|AdventOfCode\\AdventOfCode.csproj|c:\\users\\ptori\\source\\repos\\adventofcode\\adventofcode\\forms\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{126B82AF-C517-410F-B1F5-D3DC0C537F00}|AdventOfCode\\AdventOfCode.csproj|solutionrelative:adventofcode\\forms\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{126B82AF-C517-410F-B1F5-D3DC0C537F00}|AdventOfCode\\AdventOfCode.csproj|c:\\users\\ptori\\source\\repos\\adventofcode\\adventofcode\\2024\\week1\\day4.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{126B82AF-C517-410F-B1F5-D3DC0C537F00}|AdventOfCode\\AdventOfCode.csproj|solutionrelative:adventofcode\\2024\\week1\\day4.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{126B82AF-C517-410F-B1F5-D3DC0C537F00}|AdventOfCode\\AdventOfCode.csproj|c:\\users\\ptori\\source\\repos\\adventofcode\\adventofcode\\2024\\week2\\day11.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{126B82AF-C517-410F-B1F5-D3DC0C537F00}|AdventOfCode\\AdventOfCode.csproj|solutionrelative:adventofcode\\2024\\week2\\day11.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{126B82AF-C517-410F-B1F5-D3DC0C537F00}|AdventOfCode\\AdventOfCode.csproj|c:\\users\\ptori\\source\\repos\\adventofcode\\adventofcode\\2024\\week2\\day12.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{126B82AF-C517-410F-B1F5-D3DC0C537F00}|AdventOfCode\\AdventOfCode.csproj|solutionrelative:adventofcode\\2024\\week2\\day12.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{126B82AF-C517-410F-B1F5-D3DC0C537F00}|AdventOfCode\\AdventOfCode.csproj|c:\\users\\ptori\\source\\repos\\adventofcode\\adventofcode\\problem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -34,50 +22,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 254,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Day4.cs",
-              "DocumentMoniker": "C:\\Users\\ptori\\source\\repos\\AdventOfCode\\AdventOfCode\\2024\\Week1\\Day4.cs",
-              "RelativeDocumentMoniker": "AdventOfCode\\2024\\Week1\\Day4.cs",
-              "ToolTip": "C:\\Users\\ptori\\source\\repos\\AdventOfCode\\AdventOfCode\\2024\\Week1\\Day4.cs",
-              "RelativeToolTip": "AdventOfCode\\2024\\Week1\\Day4.cs",
-              "ViewState": "AQIAADYAAAAAAAAAAAA1wD4AAAA0AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-11T15:08:29.585Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "MainForm.cs",
-              "DocumentMoniker": "C:\\Users\\ptori\\source\\repos\\AdventOfCode\\AdventOfCode\\Forms\\MainForm.cs",
-              "RelativeDocumentMoniker": "AdventOfCode\\Forms\\MainForm.cs",
-              "ToolTip": "C:\\Users\\ptori\\source\\repos\\AdventOfCode\\AdventOfCode\\Forms\\MainForm.cs*",
-              "RelativeToolTip": "AdventOfCode\\Forms\\MainForm.cs*",
-              "ViewState": "AQIAAMsAAAAAAAAAAAAAANEAAAAsAAAA",
+              "Title": "Day12.cs",
+              "DocumentMoniker": "C:\\Users\\ptori\\source\\repos\\AdventOfCode\\AdventOfCode\\2024\\Week2\\Day12.cs",
+              "RelativeDocumentMoniker": "AdventOfCode\\2024\\Week2\\Day12.cs",
+              "ToolTip": "C:\\Users\\ptori\\source\\repos\\AdventOfCode\\AdventOfCode\\2024\\Week2\\Day12.cs*",
+              "RelativeToolTip": "AdventOfCode\\2024\\Week2\\Day12.cs*",
+              "ViewState": "AQIAALkAAAAAAAAAAAAQwMEAAAAnAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-11T05:13:20.92Z",
+              "WhenOpened": "2024-12-11T20:45:48.62Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "Problem.cs",
               "DocumentMoniker": "C:\\Users\\ptori\\source\\repos\\AdventOfCode\\AdventOfCode\\Problem.cs",
               "RelativeDocumentMoniker": "AdventOfCode\\Problem.cs",
               "ToolTip": "C:\\Users\\ptori\\source\\repos\\AdventOfCode\\AdventOfCode\\Problem.cs",
               "RelativeToolTip": "AdventOfCode\\Problem.cs",
-              "ViewState": "AQIAACgAAAAAAAAAAAAEwDIAAABLAAAA",
+              "ViewState": "AQIAAJMAAAAAAAAAAAAqwKIAAAAOAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-10T21:17:04.959Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
               "Title": "Utils.cs",
               "DocumentMoniker": "C:\\Users\\ptori\\source\\repos\\AdventOfCode\\AdventOfCode\\Utils.cs",
               "RelativeDocumentMoniker": "AdventOfCode\\Utils.cs",
@@ -85,33 +60,7 @@
               "RelativeToolTip": "AdventOfCode\\Utils.cs",
               "ViewState": "AQIAAAcAAAAAAAAAAAAwwHkAAACsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-10T20:56:55.315Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MainForm.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\ptori\\source\\repos\\AdventOfCode\\AdventOfCode\\Forms\\MainForm.cs",
-              "RelativeDocumentMoniker": "AdventOfCode\\Forms\\MainForm.cs",
-              "ToolTip": "C:\\Users\\ptori\\source\\repos\\AdventOfCode\\AdventOfCode\\Forms\\MainForm.cs [Design]*",
-              "RelativeToolTip": "AdventOfCode\\Forms\\MainForm.cs [Design]*",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-11T05:15:27.562Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Day11.cs",
-              "DocumentMoniker": "C:\\Users\\ptori\\source\\repos\\AdventOfCode\\AdventOfCode\\2024\\Week2\\Day11.cs",
-              "RelativeDocumentMoniker": "AdventOfCode\\2024\\Week2\\Day11.cs",
-              "ToolTip": "C:\\Users\\ptori\\source\\repos\\AdventOfCode\\AdventOfCode\\2024\\Week2\\Day11.cs",
-              "RelativeToolTip": "AdventOfCode\\2024\\Week2\\Day11.cs",
-              "ViewState": "AQIAABEAAAAAAAAAAAAAwAkAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-10T20:11:55.052Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-10T20:56:55.315Z"
             }
           ]
         }

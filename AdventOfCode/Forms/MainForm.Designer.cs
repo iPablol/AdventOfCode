@@ -171,7 +171,7 @@
             // dayColumn
             // 
             dayColumn.Text = "Day";
-            dayColumn.Width = 50;
+            dayColumn.Width = 55;
             // 
             // partColumn
             // 

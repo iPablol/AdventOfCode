@@ -41,3 +41,15 @@ project.json
 /AdventOfCode/bin
 /.vs
 /AdventOfCode/obj
+.vs/AdventOfCode/v17/.suo
+.vs/AdventOfCode/DesignTimeBuild/.dtbcache.v2
+.vs/AdventOfCode/v17/DocumentLayout.backup.json
+.vs/AdventOfCode/v17/DocumentLayout.json
+AdventOfCode/Forms/state.txt
+AdventOfCode/obj/AdventOfCode.csproj.nuget.dgspec.json
+AdventOfCode/obj/AdventOfCode.csproj.nuget.g.props
+*.cache
+AdventOfCode/obj/Debug/net8.0-windows/AdventOfCode.GeneratedMSBuildEditorConfig.editorconfig
+AdventOfCode/obj/Debug/net8.0-windows/AdventOfCode.sourcelink.json
+AdventOfCode/obj/project.assets.json
+AdventOfCode/obj/project.nuget.cache

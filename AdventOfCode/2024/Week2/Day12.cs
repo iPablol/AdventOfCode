@@ -102,45 +102,69 @@ namespace AdventOfCode._2024
             long result = 0;
             List<(int x, int y)> edge = positions.Where(IsEdge).ToList();
             //North faces
-            var northFaces = edge.Where(x => !problem.InBounds((x.x, x.y - 1)) || problem.MatrixAt((x.x, x.y - 1)) != character).Select(x => x.x).ToList();
-            northFaces.Sort();
-            for (int i = 1; i < northFaces.Count; i++)
+            var northFaces = edge.Where(x => !problem.InBounds((x.x, x.y - 1)) || problem.MatrixAt((x.x, x.y - 1)) != character);
+            var faces = northFaces.Select(x => x.y).Distinct().ToList();
+            foreach (var face in faces)
             {
-                if (Math.Abs(northFaces[i - 1] - northFaces[i]) > 1)
+                var northFace = northFaces.Where(x => x.y == face).Select(x => x.x).ToList();
+                northFace.Sort();
+                for (int i = 1; i < northFace.Count; i++)
                 {
-                    result++;
+                    if (Math.Abs(northFace[i - 1] - northFace[i]) > 1)
+                    {
+                        result++;
+                    }
                 }
             }
+            result += faces.Count;
             //South faces                                                                                                                 
-            var southFaces = edge.Where(x => !problem.InBounds((x.x, x.y + 1)) || problem.MatrixAt((x.x, x.y + 1)) != character).Select(x => x.y).ToList();
-            southFaces.Sort();
-            for (int i = 1; i < southFaces.Count; i++)
+            var southFaces = edge.Where(x => !problem.InBounds((x.x, x.y + 1)) || problem.MatrixAt((x.x, x.y + 1)) != character);
+            faces = southFaces.Select(x => x.y).Distinct().ToList();
+            foreach (var face in faces)
             {
-                if (Math.Abs(southFaces[i - 1] - southFaces[i]) > 1)
+                var southFace = southFaces.Where(x => x.y == face).Select(x => x.x).ToList();
+                southFace.Sort();
+                for (int i = 1; i < southFace.Count; i++)
                 {
-                    result++;
+                    if (Math.Abs(southFace[i - 1] - southFace[i]) > 1)
+                    {
+                        //result++;
+                    }
                 }
             }
+            result += faces.Count;
             //East faces                                                                                                                  
-            var eastFaces = edge.Where(x => !problem.InBounds((x.x + 1, x.y)) || problem.MatrixAt((x.x + 1, x.y)) != character).Select(x => x.x).ToList();
-            eastFaces.Sort();
-            for (int i = 1; i < eastFaces.Count; i++)
+            var eastFaces = edge.Where(x => !problem.InBounds((x.x + 1, x.y)) || problem.MatrixAt((x.x + 1, x.y)) != character);
+            faces = eastFaces.Select(x => x.x).Distinct().ToList();
+            foreach (var face in faces)
             {
-                if (Math.Abs(eastFaces[i - 1] - eastFaces[i]) > 1)
+                var eastFace = eastFaces.Where(x => x.x == face).Select(x => x.y).ToList();
+                eastFace.Sort();
+                for (int i = 1; i < eastFace.Count; i++)
                 {
-                    result++;
+                    if (Math.Abs(eastFace[i - 1] - eastFace[i]) > 1)
+                    {
+                        //result++;
+                    }
                 }
             }
+            result += faces.Count;
             //West faces                                                                                                                  
-            var westFaces = edge.Where(x => !problem.InBounds((x.x - 1, x.y)) || problem.MatrixAt((x.x - 1, x.y)) != character).Select(x => x.x).ToList();
-            westFaces.Sort();
-            for (int i = 1; i < westFaces.Count; i++)
+            var westFaces = edge.Where(x => !problem.InBounds((x.x - 1, x.y)) || problem.MatrixAt((x.x - 1, x.y)) != character);
+            faces = westFaces.Select(x => x.x).Distinct().ToList();
+            foreach (var face in faces)
             {
-                if (Math.Abs(westFaces[i - 1] - westFaces[i]) > 1)
+                var westFace = westFaces.Where(x => x.x == face).Select(x => x.y).ToList();
+                westFace.Sort();
+                for (int i = 1; i < westFace.Count; i++)
                 {
-                    result++;
+                    if (Math.Abs(westFace[i - 1] - westFace[i]) > 1)
+                    {
+                        //result++;
+                    }
                 }
             }
+            result += faces.Count;
             return result;
         }
     }

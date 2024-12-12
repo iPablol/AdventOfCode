@@ -101,131 +101,46 @@ namespace AdventOfCode._2024
         {
             long result = 0;
             List<(int x, int y)> edge = positions.Where(IsEdge).ToList();
-            List<List<int>> faces = [];
             //North faces
-            var northFaces = edge.Where(x => !problem.InBounds((x.x, x.y - 1)) || problem.MatrixAt((x.x, x.y - 1)) != character).Select(x => x.x);
-            foreach (var x in northFaces)
+            var northFaces = edge.Where(x => !problem.InBounds((x.x, x.y - 1)) || problem.MatrixAt((x.x, x.y - 1)) != character).Select(x => x.x).ToList();
+            northFaces.Sort();
+            for (int i = 1; i < northFaces.Count; i++)
             {
-                if (faces.Count == 0)
+                if (Math.Abs(northFaces[i - 1] - northFaces[i]) > 1)
                 {
-                    faces.Add([x]);
-                    continue;
-                }
-                bool found = false;
-                for (int i = 0; i < faces.Count; i++)
-                {
-                    var face = faces[i];
-                    for (int j = 0; j < face.Count; j++)
-                    {
-                        int x2 = face[j];
-                        if (Math.Abs(x - x2) == 1)
-                        {
-                            face.Add(x2);
-                            found = true; break;
-                        }
-                    }
-                    if (found) { break; }
-                    else
-                    {
-                        faces.Add([x]);
-                    }
+                    result++;
                 }
             }
-            result += faces.Count;
-            faces.Clear();
             //South faces                                                                                                                 
-            var southFaces = edge.Where(x => !problem.InBounds((x.x, x.y + 1)) || problem.MatrixAt((x.x, x.y + 1)) != character).Select(x => x.y);
-            foreach (var x in southFaces)
+            var southFaces = edge.Where(x => !problem.InBounds((x.x, x.y + 1)) || problem.MatrixAt((x.x, x.y + 1)) != character).Select(x => x.y).ToList();
+            southFaces.Sort();
+            for (int i = 1; i < southFaces.Count; i++)
             {
-                if (faces.Count == 0)
+                if (Math.Abs(southFaces[i - 1] - southFaces[i]) > 1)
                 {
-                    faces.Add([x]);
-                    continue;
-                }
-                bool found = false;
-                for (int i = 0; i < faces.Count; i++)
-                {
-                    var face = faces[i];
-                    for (int j = 0; j < face.Count; j++)
-                    {
-                        int x2 = face[j];
-                        if (Math.Abs(x - x2) == 1)
-                        {
-                            face.Add(x2);
-                            found = true; break;
-                        }
-                    }
-                    if (found) { break; }
-                    else
-                    {
-                        faces.Add([x]);
-                    }
+                    result++;
                 }
             }
-            result += faces.Count;
-            faces.Clear();
             //East faces                                                                                                                  
-            var eastFaces = edge.Where(x => !problem.InBounds((x.x + 1, x.y)) || problem.MatrixAt((x.x + 1, x.y)) != character).Select(x => x.x);
-            foreach (var x in eastFaces)
+            var eastFaces = edge.Where(x => !problem.InBounds((x.x + 1, x.y)) || problem.MatrixAt((x.x + 1, x.y)) != character).Select(x => x.x).ToList();
+            eastFaces.Sort();
+            for (int i = 1; i < eastFaces.Count; i++)
             {
-                if (faces.Count == 0)
+                if (Math.Abs(eastFaces[i - 1] - eastFaces[i]) > 1)
                 {
-                    faces.Add([x]);
-                    continue;
-                }
-                bool found = false;
-                for (int i = 0; i < faces.Count; i++)
-                {
-                    var face = faces[i];
-                    for (int j = 0; j < face.Count; j++)
-                    {
-                        int x2 = face[j];
-                        if (Math.Abs(x - x2) == 1)
-                        {
-                            face.Add(x2);
-                            found = true; break;
-                        }
-                    }
-                    if (found) { break; }
-                    else
-                    {
-                        faces.Add([x]);
-                    }
+                    result++;
                 }
             }
-            result += faces.Count;
-            faces.Clear();
             //West faces                                                                                                                  
-            var westFaces = edge.Where(x => !problem.InBounds((x.x - 1, x.y)) || problem.MatrixAt((x.x - 1, x.y)) != character).Select(x => x.x);
-            foreach (var x in westFaces)
+            var westFaces = edge.Where(x => !problem.InBounds((x.x - 1, x.y)) || problem.MatrixAt((x.x - 1, x.y)) != character).Select(x => x.x).ToList();
+            westFaces.Sort();
+            for (int i = 1; i < westFaces.Count; i++)
             {
-                if (faces.Count == 0)
+                if (Math.Abs(westFaces[i - 1] - westFaces[i]) > 1)
                 {
-                    faces.Add([x]);
-                    continue;
-                }
-                bool found = false;
-                for (int i = 0; i < faces.Count; i++)
-                {
-                    var face = faces[i];
-                    for (int j = 0; j < face.Count; j++)
-                    {
-                        int x2 = face[j];
-                        if (Math.Abs(x - x2) == 1)
-                        {
-                            face.Add(x2);
-                            found = true; break;
-                        }
-                    }
-                    if (found) { break; }
-                    else
-                    {
-                        faces.Add([x]);
-                    }
+                    result++;
                 }
             }
-            result += faces.Count;
-            faces.Clear();
             return result;
         }
     }

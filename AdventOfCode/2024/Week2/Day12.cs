@@ -35,7 +35,7 @@ namespace AdventOfCode._2024
         }
     }
 
-    internal class Region(char c, Day12 problem)
+    internal partial class Region(char c, Day12 problem)
     {
         public char character = c;
         private Queue<(int x, int y)> check = [];

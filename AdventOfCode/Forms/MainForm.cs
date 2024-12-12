@@ -194,7 +194,7 @@ namespace AdventOfCode
         private void ResizeConsoleAndList()
         {
             console.Height = (int)(ClientSize.Height * consoleProportion);
-            console.Width = ClientSize.Width * (int)(1 - ClientSize.Height * consoleProportion);
+            console.Width = ClientSize.Width * (int)(1 - (ClientSize.Height * consoleProportion));
             console.Top = console.Height;
             console.Left = 0;
 

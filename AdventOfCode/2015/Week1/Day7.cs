@@ -112,7 +112,7 @@ namespace AdventOfCode._2015
         {
             while (gates.Any(x => !x.performed))
             {
-                Console.WriteLine(gates.Where(x => !x.ready).Count());
+                //Console.WriteLine(gates.Where(x => !x.ready).Count());
                 gates.Where(x => x.ready && !x.performed).First().Perform();
             }
         }

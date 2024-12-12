@@ -112,10 +112,12 @@ namespace AdventOfCode._2024
                     continue;
                 }
                 bool found = false;
-                foreach (var face in faces)
+                for (int i = 0; i < faces.Count; i++)
                 {
-                    foreach (var x2 in face)
+                    var face = faces[i];
+                    for (int j = 0; j < face.Count; j++)
                     {
+                        int x2 = face[j];
                         if (Math.Abs(x - x2) == 1)
                         {
                             face.Add(x2);
@@ -141,10 +143,12 @@ namespace AdventOfCode._2024
                     continue;
                 }
                 bool found = false;
-                foreach (var face in faces)
+                for (int i = 0; i < faces.Count; i++)
                 {
-                    foreach (var x2 in face)
+                    var face = faces[i];
+                    for (int j = 0; j < face.Count; j++)
                     {
+                        int x2 = face[j];
                         if (Math.Abs(x - x2) == 1)
                         {
                             face.Add(x2);
@@ -170,10 +174,12 @@ namespace AdventOfCode._2024
                     continue;
                 }
                 bool found = false;
-                foreach (var face in faces)
+                for (int i = 0; i < faces.Count; i++)
                 {
-                    foreach (var x2 in face)
+                    var face = faces[i];
+                    for (int j = 0; j < face.Count; j++)
                     {
+                        int x2 = face[j];
                         if (Math.Abs(x - x2) == 1)
                         {
                             face.Add(x2);
@@ -199,10 +205,12 @@ namespace AdventOfCode._2024
                     continue;
                 }
                 bool found = false;
-                foreach (var face in faces)
+                for (int i = 0; i < faces.Count; i++)
                 {
-                    foreach (var x2 in face)
+                    var face = faces[i];
+                    for (int j = 0; j < face.Count; j++)
                     {
+                        int x2 = face[j];
                         if (Math.Abs(x - x2) == 1)
                         {
                             face.Add(x2);

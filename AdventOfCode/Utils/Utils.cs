@@ -136,9 +136,9 @@ namespace AdventOfCode
             int[,] result = new int[rows, cols];
 
             // Perform convolution
-            for (int i = 0; i < rows; i++)
+            Parallel.For(0, rows, i => // Parallelize the outer loop (rows)
             {
-                for (int j = 0; j < cols; j++)
+                for (int j = 0; j < cols; j++) // Keep the inner loop as is (columns)
                 {
                     int sum = 0;
 
@@ -160,7 +160,7 @@ namespace AdventOfCode
 
                     result[i, j] = sum;
                 }
-            }
+            });
 
             return result;
         }

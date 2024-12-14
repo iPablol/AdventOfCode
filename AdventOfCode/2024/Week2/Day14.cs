@@ -27,15 +27,16 @@ namespace AdventOfCode._2024
             if (part1)
             {
                 matrix = new char[xSize, ySize];
-                (int, int) gridSize = (xSize, ySize);
+                Pos gridSize = (xSize, ySize);
                 foreach (Robot robot in robots)
                 {
                     robot.position = robot.Move(seconds);
                 }
+                // Printing
                 if (testing)
                 {
                     MatrixForEach((i, j, c) => matrix[i, j] = (i == xSize / 2 || j == ySize / 2) ? '.' : '0');
-                    foreach (Robot r in robots.Where(x => !(x.x == xSize / 2 || x.y == ySize / 2)))
+                    foreach (Robot r in robots.Where(x => x.quadrant != 0))
                     {
                         if (int.TryParse(matrix[r.x, r.y].ToString(), out int value))
                         {
@@ -57,13 +58,13 @@ namespace AdventOfCode._2024
                     Console.WriteLine("This problem does not support example on part 2");
                     return;
                 }
+                // Could optimize further by parallelizing chunks of seconds
                 int second = 0;
                 int maxRecordedDensity = 0;
                 int[,] robotMap = new int[xSize, ySize];
                 // originally 20x20
                 int[,] densityBox = new int[15, 15]; // I don't wanna lay out a christmas tree, so I'll just detect density peaks
                 densityBox.MatrixForEach((i, j, x) => densityBox[i, j] = 1);
-                int[,] densityMap = robotMap.Convolve(densityBox);
                 // with 20x20 the target density was 221, with 15x15 it's 181
                 while (maxRecordedDensity < 150) // We consider a density threshold to be part of the easter egg
                 {
@@ -73,14 +74,12 @@ namespace AdventOfCode._2024
                         Pos pos = robot.Move(second);
                         robotMap[pos.x, pos.y]++;
                     }
-                    densityMap = robotMap.Convolve(densityBox);
-                    int max;
-                    if ((max = densityMap.MatrixFlattened().Max()) > maxRecordedDensity)
+                    for (int max = robotMap.Convolve(densityBox).MatrixFlattened().Max(); max > maxRecordedDensity; )
                     {
                         maxRecordedDensity = max;
                         Console.WriteLine($"{second}: {maxRecordedDensity}");
                     }
-                    robotMap = new int[xSize, ySize];
+                    Array.Clear(robotMap);
                 }
                 result = second;
             }

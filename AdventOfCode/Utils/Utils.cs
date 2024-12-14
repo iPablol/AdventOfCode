@@ -41,7 +41,7 @@ namespace AdventOfCode
             }
         }
 
-        public static T At<T>(this T[,] matrix, (int x, int y) position) => matrix[position.x, position.y];
+        public static T At<T>(this T[,] matrix, Pos position) => matrix[position.x, position.y];
 
         public static char AsChar(this string s) => s.ToCharArray().First();
 
@@ -96,7 +96,7 @@ namespace AdventOfCode
             return diagonals;
         }
 
-        public static (int x, int y) FindElement<T>(this T[,] matrix, T element)
+        public static Pos FindElement<T>(this T[,] matrix, T element)
         {
             (int, int) result = (0, 0);
             matrix.MatrixForEach((i, j, t) =>
@@ -120,6 +120,50 @@ namespace AdventOfCode
         }
 
         internal static bool ImplementsSSS(this Problem problem) => problem?.GetType()?.GetMethod("SingleSentenceSolution", BindingFlags.Instance | BindingFlags.NonPublic)?.DeclaringType != typeof(Problem);
+
+        public static int[,] Convolve(this int[,] grid, int[,] kernel)
+        {
+            int rows = grid.GetLength(0);
+            int cols = grid.GetLength(1);
+
+            int kernelRows = kernel.GetLength(0);
+            int kernelCols = kernel.GetLength(1);
+
+            int kernelCenterRow = kernelRows / 2;
+            int kernelCenterCol = kernelCols / 2;
+
+            // Output matrix
+            int[,] result = new int[rows, cols];
+
+            // Perform convolution
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    int sum = 0;
+
+                    // Apply the kernel
+                    for (int ki = 0; ki < kernelRows; ki++)
+                    {
+                        for (int kj = 0; kj < kernelCols; kj++)
+                        {
+                            int row = i + ki - kernelCenterRow;
+                            int col = j + kj - kernelCenterCol;
+
+                            // Check for boundary conditions
+                            if (row >= 0 && row < rows && col >= 0 && col < cols)
+                            {
+                                sum += grid[row, col] * kernel[ki, kj];
+                            }
+                        }
+                    }
+
+                    result[i, j] = sum;
+                }
+            }
+
+            return result;
+        }
     }
 
 }

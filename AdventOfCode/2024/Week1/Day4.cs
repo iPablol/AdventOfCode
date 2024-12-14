@@ -116,7 +116,7 @@ namespace AdventOfCode._2024
     public struct Pattern
     {
         public char[,] pattern;
-        private (int x, int y) size;
+        private Pos size;
         public int xSize => size.x;
         public int ySize => size.y;
         public Pattern((int xSize, int ySize) size, params char?[] pattern)

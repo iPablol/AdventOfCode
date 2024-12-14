@@ -38,15 +38,15 @@ namespace AdventOfCode._2024
     internal partial class Region(char c, Day12 problem)
     {
         public char character = c;
-        private Queue<(int x, int y)> check = [];
-        private List<(int x, int y)> positions = [];
+        private Queue<Pos> check = [];
+        private List<Pos> positions = [];
         private Day12 problem = problem;
         private List<(int, int)> checkd = [];
 
 
-        public bool Contains((int x, int y) position) => positions.Contains(position);
+        public bool Contains(Pos position) => positions.Contains(position);
 
-        public void Search((int x, int y) position)
+        public void Search(Pos position)
         {
             check.Enqueue(position);
             while (check.TryDequeue(out var pos))
@@ -82,7 +82,7 @@ namespace AdventOfCode._2024
             return result;
         }
 
-        private bool IsEdge((int x, int y) position)
+        private bool IsEdge(Pos position)
         {
             if (problem.OutOfBoundsAdjacentCount(position) > 0) { return true; };
             foreach (var item in problem.AdjacentPositions(position).Where(x => problem.MatrixAt(x) != character))
@@ -95,7 +95,7 @@ namespace AdventOfCode._2024
         public long CalculateSides()
         {
             long result = 0;
-            List<(int x, int y)> edge = positions.Where(IsEdge).ToList();
+            List<Pos> edge = positions.Where(IsEdge).ToList();
             //North faces
             var northFaces = edge.Where(x => (problem.North(x) ?? '.') != character); // select edge positions that have a north face
             var faces = northFaces.Select(x => x.y).Distinct().ToList(); // select the different y positions of north faces

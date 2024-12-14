@@ -92,11 +92,11 @@ namespace AdventOfCode
             return result;
         }
 
-        protected void PrintMatrix(char[,] mat)
+        protected void PrintMatrix<T>(T[,] mat, string separator = "\t")
         {
             mat.MatrixForEachLine((i, line) =>
             {
-                Console.WriteLine($"{i}\t{new string(line.ToArray())}");
+                Console.WriteLine($"{i}\t{line.Aggregate("", (a, b) => a + separator + b)}");
             });
         }
 
@@ -112,7 +112,7 @@ namespace AdventOfCode
             }
         }
 
-        protected (int x, int y) Move((int x, int y) position, char direction)
+        protected Pos Move(Pos position, char direction)
         {
             return direction switch
             {
@@ -131,10 +131,10 @@ namespace AdventOfCode
             return flattened;
         }
 
-        public List<(int x, int y)> AdjacentPositions((int x, int y) position)
+        public List<Pos> AdjacentPositions(Pos position)
         {
-            List<(int x, int y)> result = [];
-            (int x, int y) pos = (position.x - 1, position.y);
+            List<Pos> result = [];
+            Pos pos = (position.x - 1, position.y);
             if (InBounds(pos)) { result.Add(pos); }
             pos = (position.x, position.y - 1);
             if (InBounds(pos)) { result.Add(pos); }
@@ -145,7 +145,7 @@ namespace AdventOfCode
             return result;
         }
 
-        public int OutOfBoundsAdjacentCount((int x, int y) position)
+        public int OutOfBoundsAdjacentCount(Pos position)
         {
             int result = 0;
             if (North(position) == null) { result++; }
@@ -156,19 +156,19 @@ namespace AdventOfCode
         }
 
         protected bool InBounds(int x, int y) => x >= 0 && y >= 0 && x < columns && y < rows;
-        public bool InBounds((int x, int y) pos) => pos.x >= 0 && pos.y >= 0 && pos.x < columns && pos.y < rows;
+        public bool InBounds(Pos pos) => pos.x >= 0 && pos.y >= 0 && pos.x < columns && pos.y < rows;
 
-        public char? North((int x, int y) pos) => InBounds(pos.x, pos.y - 1) ? matrix[pos.x, pos.y - 1] : null;
-        public char? South((int x, int y) pos) => InBounds(pos.x, pos.y + 1) ? matrix[pos.x, pos.y + 1] : null;
-        public char? East((int x, int y) pos) => InBounds(pos.x + 1, pos.y) ? matrix[pos.x + 1, pos.y] : null;
-        public char? West((int x, int y) pos) => InBounds(pos.x - 1, pos.y) ? matrix[pos.x - 1, pos.y] : null;
+        public char? North(Pos pos) => InBounds(pos.x, pos.y - 1) ? matrix[pos.x, pos.y - 1] : null;
+        public char? South(Pos pos) => InBounds(pos.x, pos.y + 1) ? matrix[pos.x, pos.y + 1] : null;
+        public char? East(Pos pos) => InBounds(pos.x + 1, pos.y) ? matrix[pos.x + 1, pos.y] : null;
+        public char? West(Pos pos) => InBounds(pos.x - 1, pos.y) ? matrix[pos.x - 1, pos.y] : null;
 
-        public char? NorthEast((int x, int y) pos) => InBounds(pos.x + 1, pos.y - 1) ? matrix[pos.x + 1, pos.y - 1] : null;
-        public char? SouthEast((int x, int y) pos) => InBounds(pos.x + 1, pos.y + 1) ? matrix[pos.x + 1, pos.y + 1] : null;
-        public char? NorthWest((int x, int y) pos) => InBounds(pos.x - 1, pos.y - 1) ? matrix[pos.x - 1, pos.y - 1] : null;
-        public char? SouthWest((int x, int y) pos) => InBounds(pos.x - 1, pos.y + 1) ? matrix[pos.x, pos.y + 1] : null;
+        public char? NorthEast(Pos pos) => InBounds(pos.x + 1, pos.y - 1) ? matrix[pos.x + 1, pos.y - 1] : null;
+        public char? SouthEast(Pos pos) => InBounds(pos.x + 1, pos.y + 1) ? matrix[pos.x + 1, pos.y + 1] : null;
+        public char? NorthWest(Pos pos) => InBounds(pos.x - 1, pos.y - 1) ? matrix[pos.x - 1, pos.y - 1] : null;
+        public char? SouthWest(Pos pos) => InBounds(pos.x - 1, pos.y + 1) ? matrix[pos.x, pos.y + 1] : null;
 
-        public char MatrixAt((int x, int y) position) => matrix[position.x, position.y];
+        public char MatrixAt(Pos position) => matrix[position.x, position.y];
 
         public int columns => matrix?.GetLength(0) ?? 0;
         public int rows => matrix?.GetLength(1) ?? 0;

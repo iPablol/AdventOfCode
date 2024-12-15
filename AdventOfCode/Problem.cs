@@ -92,6 +92,8 @@ namespace AdventOfCode
             return result;
         }
 
+        protected void PrintMatrix() => PrintMatrix(matrix);
+
         protected void PrintMatrix<T>(T[,] mat, string separator = "", string nullString = ".")
         {
             mat.MatrixForEachLine((i, line) =>

@@ -24,6 +24,7 @@ namespace AdventOfCode._2024
                     region.Search((j, i));
                 }
             });
+            PrintMatrix();
             result = regions.Sum(x => (part1 ? x.CalculatePerimeter() : x.CalculateSides()) * x.CalculateArea());
             if (testing)
             {

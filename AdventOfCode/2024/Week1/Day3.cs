@@ -41,11 +41,10 @@ namespace AdventOfCode._2024
                         op2 = int.Parse(operand.Value);
                     }
                 }
-                result += op1 ?? 0 * op2 ?? 0;
+                result += (op1 ?? 0) * (op2 ?? 0);
             }
         }
 
-        // Apparently the example doesn't work on part 2
         protected override void SingleSentenceSolution() => result = part1 ? Regex.Matches(input, "mul\\([0-9]*,[0-9]*\\)").ToList().Sum(match => int.Parse(Regex.Match(match.Value, "[0-9]+").Value) * int.Parse(Regex.Matches(match.Value, "[0-9]+")[1].Value)) : Regex.Matches("do()" + input, "do\\(\\)|don't\\(\\)").ToList().Zip(Regex.Split(input, "do\\(\\)|don't\\(\\)").ToList()).ToList().Sum(tuple => tuple.First.Value == "do()" ? Regex.Matches(tuple.Second, "mul\\([0-9]*,[0-9]*\\)").ToList().Sum(match => int.Parse(Regex.Match(match.Value, "[0-9]+").Value) * int.Parse(Regex.Matches(match.Value, "[0-9]+")[1].Value)) : 0);
     }
 }

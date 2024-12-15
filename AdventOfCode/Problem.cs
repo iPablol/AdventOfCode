@@ -63,7 +63,7 @@ namespace AdventOfCode
 
         public void Splitlines() => lines = input.Split("\r\n");
 
-        protected void ConstructMatrix()
+        protected virtual void ConstructMatrix()
         {
             Splitlines();
             matrix = new char[lines?.Length ?? 1, lines?[0].Length ?? 1];
@@ -92,11 +92,11 @@ namespace AdventOfCode
             return result;
         }
 
-        protected void PrintMatrix<T>(T[,] mat, string separator = "\t")
+        protected void PrintMatrix<T>(T[,] mat, string separator = "", string nullString = ".")
         {
             mat.MatrixForEachLine((i, line) =>
             {
-                Console.WriteLine($"{i}\t{line.Aggregate("", (a, b) => a + separator + b)}");
+                Console.WriteLine($"{i}\t{line.Aggregate("", (a, b) => a + separator + (b == null ? nullString : b))}");
             });
         }
 
@@ -170,8 +170,8 @@ namespace AdventOfCode
 
         public char MatrixAt(Pos position) => matrix[position.x, position.y];
 
-        public int columns => matrix?.GetLength(0) ?? 0;
-        public int rows => matrix?.GetLength(1) ?? 0;
+        public virtual int columns => matrix?.GetLength(0) ?? 0;
+        public virtual int rows => matrix?.GetLength(1) ?? 0;
         public int xLength => columns;
         public int yLength => rows;
 

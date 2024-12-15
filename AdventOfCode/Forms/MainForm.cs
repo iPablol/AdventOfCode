@@ -17,6 +17,7 @@ namespace AdventOfCode
 {
     public partial class MainForm : Form
     {
+        internal static CustomWriter EConsole;
         private static string savePath = "../../../Forms/state.txt";
         public MainForm()
         {
@@ -31,7 +32,8 @@ namespace AdventOfCode
 
         private void RedirectConsole()
         {
-            Console.SetOut(new CustomWriter(console.GetType().GetMethod(nameof(console.AppendText)), console));
+            EConsole = new CustomWriter(console.GetType().GetMethod(nameof(console.AppendText)), console);
+            Console.SetOut(EConsole);
         }
 
         private void SaveState()
@@ -181,7 +183,7 @@ namespace AdventOfCode
 
         private void clearButton_Click(object sender, EventArgs e)
         {
-            console.Clear();
+            EConsole.Clear();
             resultsList.Items.Clear();
             resultsList.Groups.Clear();
         }
@@ -240,8 +242,8 @@ namespace AdventOfCode
         private System.Windows.Forms.Timer updateTimer;
         private ConcurrentQueue<string> consoleBuffer = [];
 
-        private int maxUpdates = 100;
-        private int updateTimeIntervalMs = 5;
+        private int maxUpdates = 50;
+        private int updateTimeIntervalMs = 17;
 
         public CustomWriter(MethodInfo output, object instance)
         {
@@ -255,6 +257,11 @@ namespace AdventOfCode
 
         private void UpdateConsoleBuffer(object? sender, EventArgs e)
         {
+            if (shouldClear)
+            {
+                (instance as RichTextBox).Clear();
+                shouldClear = false;
+            }
             int iterations = 0;
             while (consoleBuffer.TryDequeue(out string update))
             {
@@ -285,6 +292,13 @@ namespace AdventOfCode
             consoleBuffer.Enqueue(value + '\n');
         }
 
+        public void Clear()
+        {
+            consoleBuffer.Clear();
+            shouldClear = true;
+        }
+
+        private bool shouldClear = false;
         public override Encoding Encoding => Encoding.UTF8;
     }
 }

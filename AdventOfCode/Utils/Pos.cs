@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace AdventOfCode
 {
+    // matrices use i for y and j for x, otherwise x is column and y is row
+    // so matrix[pos.y, pos.x] but North is (pos.y - 1, pos.x)
     public struct Pos(int x, int y)
     {
         public int x = x;

@@ -19,9 +19,9 @@ namespace AdventOfCode
         }
         public static void MatrixForEach<T>(this T[,] matrix, Action<int, int, T> action)
         {
-            for (int j = 0; j < matrix.GetLength(1); j++)
+            for (int i = 0; i < matrix.GetLength(0); i++)
             {
-                for (int i = 0; i < matrix.GetLength(0); i++)
+                for (int j = 0; j < matrix.GetLength(1); j++)
                 {
                     action(i, j, matrix[i, j]);
                 }
@@ -30,18 +30,18 @@ namespace AdventOfCode
 
         public static void MatrixForEachLine<T>(this T[,] matrix, Action<int, List<T>> action)
         {
-            for (int j = 0;  j < matrix.GetLength(1); j++)
+            for (int i = 0; i < matrix.GetLength(0); i++)
             {
                 List<T> line = [];
-                for (int i = 0; i < matrix.GetLength(0); i++)
+                for (int j = 0;  j < matrix.GetLength(1); j++)
                 {
                     line.Add(matrix[i, j]);
                 }
-                action(j, line);
+                action(i, line);
             }
         }
 
-        public static T At<T>(this T[,] matrix, Pos position) => matrix[position.x, position.y];
+        public static T At<T>(this T[,] matrix, Pos position) => matrix[position.y, position.x];
 
         public static char AsChar(this string s) => s.ToCharArray().First();
 
@@ -164,6 +164,27 @@ namespace AdventOfCode
 
             return result;
         }
-    }
+        public static bool InBounds<T>(this T[,] matrix, Pos pos) => pos.x >= 0 && pos.y >= 0 && pos.y < matrix.GetLength(0) && pos.x < matrix.GetLength(1);
+        public static bool InBounds<T>(this T[,] matrix, int x, int y) => matrix.InBounds((x, y));
 
+        public static T? West<T>(this T?[,] matrix, Pos pos) => matrix.InBounds(pos.x - 1, pos.y) ? matrix[pos.y, pos.x - 1] : default;
+        public static T? East<T>(this T?[,] matrix, Pos pos) => matrix.InBounds(pos.x + 1, pos.y) ? matrix[pos.y, pos.x + 1] : default;
+        public static T? South<T>(this T?[,] matrix, Pos pos) => matrix.InBounds(pos.x, pos.y + 1) ? matrix[pos.y + 1, pos.x] : default;
+        public static T? North<T>(this T?[,] matrix, Pos pos) => matrix.InBounds(pos.x, pos.y - 1) ? matrix[pos.y - 1, pos.x] : default;
+                      
+        public static T? SouthWest<T>(this T?[,] matrix, Pos pos) => matrix.InBounds(pos.x - 1, pos.y + 1) ? matrix[pos.y + 1, pos.x - 1] : default;
+        public static T? SouthEast<T>(this T?[,] matrix, Pos pos) => matrix.InBounds(pos.x + 1, pos.y + 1) ? matrix[pos.y + 1, pos.x + 1] : default;
+        public static T? NorthWest<T>(this T?[,] matrix, Pos pos) => matrix.InBounds(pos.x - 1, pos.y - 1) ? matrix[pos.y - 1, pos.x - 1] : default;
+        public static T? NorthEast<T>(this T?[,] matrix, Pos pos) => matrix.InBounds(pos.x + 1, pos.y - 1) ? matrix[pos.y, pos.x + 1] : default;
+
+        public static Pos? WestPos<T>(this T?[,] matrix, Pos pos) => matrix.InBounds(pos.x - 1, pos.y) ? (pos.x - 1, pos.y) : default;
+        public static Pos? EastPos<T>(this T?[,] matrix, Pos pos) => matrix.InBounds(pos.x + 1, pos.y) ? (pos.x + 1, pos.y ) : default;
+        public static Pos? SouthPos<T>(this T?[,] matrix, Pos pos) => matrix.InBounds(pos.x, pos.y + 1) ? (pos.x, pos.y + 1) : default;
+        public static Pos? NorthPos<T>(this T?[,] matrix, Pos pos) => matrix.InBounds(pos.x, pos.y - 1) ? (pos.x, pos.y - 1) : default;
+                      
+        public static Pos? SouthWestPos<T>(this T?[,] matrix, Pos pos) => matrix.InBounds(pos.x - 1, pos.y + 1) ? (pos.x - 1, pos.y + 1) : default;
+        public static Pos? SouthEastPos<T>(this T?[,] matrix, Pos pos) => matrix.InBounds(pos.x + 1, pos.y + 1) ? (pos.x + 1, pos.y + 1) : default;
+        public static Pos? NorthWestPos<T>(this T?[,] matrix, Pos pos) => matrix.InBounds(pos.x - 1, pos.y - 1) ? (pos.x - 1, pos.y - 1) : default;
+        public static Pos? NorthEastPos<T>(this T?[,] matrix, Pos pos) => matrix.InBounds(pos.x + 1, pos.y - 1) ? (pos.x + 1, pos.y - 1) : default;
+    }
 }

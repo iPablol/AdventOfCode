@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace AdventOfCode
 {
@@ -120,6 +121,20 @@ namespace AdventOfCode
         }
 
         internal static bool ImplementsSSS(this Problem problem) => problem?.GetType()?.GetMethod("SingleSentenceSolution", BindingFlags.Instance | BindingFlags.NonPublic)?.DeclaringType != typeof(Problem);
+
+        public static T?[,] DeepCopy<T>(this T?[,] matrix)
+        {
+            int rows = matrix.GetLength(0), columns = matrix.GetLength(1);
+            T?[,] result = new T?[rows, columns];
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    result[i, j] = matrix[i, j];
+                }
+            }
+            return result;
+        }
 
         public static int[,] Convolve(this int[,] grid, int[,] kernel)
         {

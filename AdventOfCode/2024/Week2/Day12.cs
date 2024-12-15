@@ -17,11 +17,11 @@ namespace AdventOfCode._2024
             regions = new List<Region>();
             matrix.MatrixForEach((i, j, c) =>
             {
-                if (!regions.Any(x => x.Contains((i, j))))
+                if (!regions.Any(x => x.Contains((j, i))))
                 {
                     Region region = new Region(c, this);
                     regions.Add(region);
-                    region.Search((i, j));
+                    region.Search((j, i));
                 }
             });
             result = regions.Sum(x => (part1 ? x.CalculatePerimeter() : x.CalculateSides()) * x.CalculateArea());

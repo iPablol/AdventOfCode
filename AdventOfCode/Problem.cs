@@ -158,17 +158,17 @@ namespace AdventOfCode
         protected bool InBounds(int x, int y) => x >= 0 && y >= 0 && x < columns && y < rows;
         public bool InBounds(Pos pos) => pos.x >= 0 && pos.y >= 0 && pos.x < columns && pos.y < rows;
 
-        public char? North(Pos pos) => InBounds(pos.x, pos.y - 1) ? matrix[pos.x, pos.y - 1] : null;
-        public char? South(Pos pos) => InBounds(pos.x, pos.y + 1) ? matrix[pos.x, pos.y + 1] : null;
-        public char? East(Pos pos) => InBounds(pos.x + 1, pos.y) ? matrix[pos.x + 1, pos.y] : null;
-        public char? West(Pos pos) => InBounds(pos.x - 1, pos.y) ? matrix[pos.x - 1, pos.y] : null;
+        public char? North(Pos pos) => InBounds(pos.x, pos.y - 1) ? matrix[pos.y - 1, pos.x] : null;
+        public char? South(Pos pos) => InBounds(pos.x, pos.y + 1) ? matrix[pos.y + 1, pos.x] : null;
+        public char? East(Pos pos) => InBounds(pos.x + 1, pos.y) ? matrix[pos.y, pos.x + 1] : null;
+        public char? West(Pos pos) => InBounds(pos.x - 1, pos.y) ? matrix[pos.y, pos.x - 1] : null;
 
-        public char? NorthEast(Pos pos) => InBounds(pos.x + 1, pos.y - 1) ? matrix[pos.x + 1, pos.y - 1] : null;
-        public char? SouthEast(Pos pos) => InBounds(pos.x + 1, pos.y + 1) ? matrix[pos.x + 1, pos.y + 1] : null;
-        public char? NorthWest(Pos pos) => InBounds(pos.x - 1, pos.y - 1) ? matrix[pos.x - 1, pos.y - 1] : null;
-        public char? SouthWest(Pos pos) => InBounds(pos.x - 1, pos.y + 1) ? matrix[pos.x, pos.y + 1] : null;
+        public char? NorthEast(Pos pos) => InBounds(pos.x + 1, pos.y - 1) ? matrix[pos.y - 1, pos.x + 1] : null;
+        public char? SouthEast(Pos pos) => InBounds(pos.x + 1, pos.y + 1) ? matrix[pos.y + 1, pos.x + 1] : null;
+        public char? NorthWest(Pos pos) => InBounds(pos.x - 1, pos.y - 1) ? matrix[pos.y - 1, pos.x - 1] : null;
+        public char? SouthWest(Pos pos) => InBounds(pos.x - 1, pos.y + 1) ? matrix[pos.y + 1, pos.x] : null;
 
-        public char MatrixAt(Pos position) => matrix[position.x, position.y];
+        public char MatrixAt(Pos position) => matrix[position.y, position.x];
 
         public virtual int columns => matrix?.GetLength(0) ?? 0;
         public virtual int rows => matrix?.GetLength(1) ?? 0;

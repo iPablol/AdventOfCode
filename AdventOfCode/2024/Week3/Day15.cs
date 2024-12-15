@@ -22,16 +22,13 @@ namespace AdventOfCode._2024
             {
                 foreach (char instruction in set)
                 {
-                    if (true)
+                    if (testing)
                     {
-                        if (++movecount == 1100)
-                        {
-                            PrintMatrix(GetState(), "", ".");
-                            Console.WriteLine(instruction);
-                        }
+                        PrintMatrix(GetState());
+                        Console.WriteLine(instruction);
                     }
                     Element?[,] state = GetState();
-                    elements.Where(x => x.type == '@').First().Move(instruction, ref state);
+                    elements.Where(x => x.type == '@').First().Move(instruction, ref state, false, true);
                     state.MatrixForEach((i, j, e) =>
                     {
                         if (e != null)
@@ -45,7 +42,7 @@ namespace AdventOfCode._2024
             {
                 result += element.x + element.y * 100;
             }
-            //PrintMatrix(GetState(), "");
+            PrintMatrix(GetState(), "");
         }
 
         protected override void ConstructMatrix()
@@ -97,16 +94,12 @@ namespace AdventOfCode._2024
 
             public override string ToString() => type.ToString();
 
-            public bool Move(char direction, ref Element?[,] matrixState, bool pairCall = false)
+            public bool Move(char direction, ref Element?[,] matrixState, bool pairCall = false, bool firstCall = false)
             {
-                Element?[,] originalState = new Element?[matrixState.GetLength(0), matrixState.GetLength(1)];
-
-                for (int i = 0; i < matrixState.GetLength(0); i++)
+                Element?[,] originalState = null;
+                if (firstCall)
                 {
-                    for (int j = 0; j < matrixState.GetLength(1); j++)
-                    {
-                        originalState[i, j] = matrixState[i, j];
-                    }
+                    originalState = matrixState.DeepCopy();
                 }
                 if (type == '#') goto RejectMove;
                 Element pair = null; bool pairMoved = false;
@@ -125,7 +118,6 @@ namespace AdventOfCode._2024
                 if (!pairCall && pair != null)
                 {
                     front = matrixState.At(newPosition);
-                    if (front is not null && front.type == '#') { goto RejectMove; }
                     if (!pair.Move(direction, ref matrixState, true))
                     {
                         goto RejectMove;
@@ -163,7 +155,12 @@ namespace AdventOfCode._2024
                 return true;
 
                 RejectMove:
-                matrixState = originalState;
+                // rollback everything on the first pushed element
+                if (firstCall)
+                {
+                    matrixState = originalState;
+                }
+                // chaining rollback doesn't work
                 //if (pairMoved)
                 //{
                 //    Pos returnPos = type switch

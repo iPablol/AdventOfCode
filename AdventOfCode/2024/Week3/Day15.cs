@@ -17,24 +17,35 @@ namespace AdventOfCode._2024
         {
             List<string> instructions = input.Split("\r\n\r\n")[1].Split("\r\n").ToList();
             ConstructMatrix();
+            int movecount = 0;
             foreach (string set in instructions)
             {
                 foreach (char instruction in set)
                 {
-                    if (testing)
+                    if (true)
                     {
-                        PrintMatrix(GetState(), "", ".");
-                        Console.WriteLine(instruction);
+                        if (++movecount == 1100)
+                        {
+                            PrintMatrix(GetState(), "", ".");
+                            Console.WriteLine(instruction);
+                        }
                     }
                     Element?[,] state = GetState();
                     elements.Where(x => x.type == '@').First().Move(instruction, ref state);
+                    state.MatrixForEach((i, j, e) =>
+                    {
+                        if (e != null)
+                        {
+                            e.position = (j, i);
+                        }
+                    });
                 }
             }
             foreach (Element element in elements.Where(x => x.type == 'O' || x.type == '['))
             {
                 result += element.x + element.y * 100;
             }
-            PrintMatrix(GetState(), "");
+            //PrintMatrix(GetState(), "");
         }
 
         protected override void ConstructMatrix()
@@ -78,7 +89,7 @@ namespace AdventOfCode._2024
 
         partial class Element(Pos pos, char t)
         {
-            protected Pos position = pos;
+            public Pos position = pos;
             public char type = t;
 
             public int x => position.x;
@@ -88,12 +99,22 @@ namespace AdventOfCode._2024
 
             public bool Move(char direction, ref Element?[,] matrixState, bool pairCall = false)
             {
-                if (type == '#') return false;
+                Element?[,] originalState = new Element?[matrixState.GetLength(0), matrixState.GetLength(1)];
+
+                for (int i = 0; i < matrixState.GetLength(0); i++)
+                {
+                    for (int j = 0; j < matrixState.GetLength(1); j++)
+                    {
+                        originalState[i, j] = matrixState[i, j];
+                    }
+                }
+                if (type == '#') goto RejectMove;
                 Element pair = null; bool pairMoved = false;
                 if (type == '[' || type == ']')
                 {
                     pair = type == '[' ? matrixState.East(position) : matrixState.West(position);
                 }
+                Element? front;
                 Pos newPosition = direction switch
                 {
                     '>' => matrixState.EastPos(position) ?? position,
@@ -103,17 +124,18 @@ namespace AdventOfCode._2024
                 };
                 if (!pairCall && pair != null)
                 {
+                    front = matrixState.At(newPosition);
+                    if (front is not null && front.type == '#') { goto RejectMove; }
                     if (!pair.Move(direction, ref matrixState, true))
                     {
-                        return false;
+                        goto RejectMove;
                     }
                     else
                     {
                         pairMoved = true;
                     }
                 }
-
-                Element? front = matrixState.At(newPosition);
+                front = matrixState.At(newPosition);
                 if (front == null)
                 {
                     goto ConfirmMove;
@@ -141,17 +163,16 @@ namespace AdventOfCode._2024
                 return true;
 
                 RejectMove:
-                if (pairMoved)
-                {
-                    Pos returnPos = type switch
-                    {
-                        ']' => matrixState.WestPos(position).Value,
-                        '[' => matrixState.EastPos(position).Value,
-                    };
-                    matrixState[pair.position.y, pair.position.x] = null; // these two lines apparently
-                    pair.position = returnPos;
-                    matrixState[pair.position.y, pair.position.x] = pair; // don't do anything
-                }
+                matrixState = originalState;
+                //if (pairMoved)
+                //{
+                //    Pos returnPos = type switch
+                //    {
+                //        ']' => matrixState.WestPos(position).Value,
+                //        '[' => matrixState.EastPos(position).Value,
+                //    };
+                //    pair.position = returnPos;
+                //}
                 return false;
             }
         }

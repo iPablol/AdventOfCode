@@ -13,6 +13,7 @@ namespace AdventOfCode._2024
         protected override void Solve()
         {
             ConstructMatrix();
+            PrintMatrix();
             if (part1)
             {
                 //search horizontal
@@ -23,10 +24,10 @@ namespace AdventOfCode._2024
                 }
 
                 //search vertical
-                for (int i = 0; i < yLength; i++)
+                for (int j = 0; j < xLength; j++)
                 {
                     string search = "";
-                    for (int j = 0; j < xLength; j++)
+                    for (int i = 0; i < yLength; i++)
                     {
                         search += matrix[i, j];
                     }

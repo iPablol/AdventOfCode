@@ -14,34 +14,33 @@ namespace AdventOfCode._2024
         protected override void Solve()
         {
             ConstructMatrix();
-            //PrintMatrix(matrix);
             (guardPos, guard) = FindGuard();
             Pos newPos = guardPos;
             do
             {
                 (guardPos, guard) = FindGuard();
-                newPos = Move(); //could also call Problem.Move((int, int), char)
-                if (!InBounds(newPos.x, newPos.y))
+                newPos = Move();
+                if (!InBounds(newPos))
                 {
-                    matrix[guardPos.x, guardPos.y] = 'X';
+                    matrix[guardPos.y, guardPos.x] = 'X';
                     if (!history.Contains(guardPos))
                         history.Add(guardPos);
                     break;
                 }
                 if (matrix.At(newPos) == '#')
                 {
-                    matrix[guardPos.x, guardPos.y] = Turn(guard);
+                    matrix[guardPos.y, guardPos.x] = Turn(guard);
                     continue;
                 }
-                (matrix[newPos.x, newPos.y], matrix[guardPos.x, guardPos.y]) = (matrix[guardPos.x, guardPos.y], matrix[newPos.x, newPos.y]);
+                (matrix[newPos.y, newPos.x], matrix[guardPos.y, guardPos.x]) = (matrix[guardPos.y, guardPos.x], matrix[newPos.y, newPos.x]);
                 if (matrix.At(guardPos) != 'X')
                 {
-                    matrix[guardPos.x, guardPos.y] = 'X';
+                    matrix[guardPos.y, guardPos.x] = 'X';
                     if (!history.Contains(newPos))
                         history.Add(newPos);
                 }
             }
-            while (InBounds(newPos.x, newPos.y));
+            while (InBounds(newPos));
             //PrintMap(matrix);
             if (part1)
             {
@@ -62,7 +61,7 @@ namespace AdventOfCode._2024
             int id = 1;
             foreach (Pos position in history)
             {
-                (int, int) copy = position;
+                Pos copy = position;
                 tasks.Add(Task.Run(() => TestPosition(copy, id++)));
             }
             var resultsTask = Task.WhenAll(tasks);
@@ -83,7 +82,7 @@ namespace AdventOfCode._2024
             try
             {
                 char[,] map = ConstructMatrixCopy();
-                map[position.x, position.y] = '#';
+                map[position.y, position.x] = '#';
                 List<(Pos, char)> recordedPositions = [];
                 (Pos gPos, char guard) = FindGuard();
                 Pos newPos = gPos;
@@ -95,7 +94,7 @@ namespace AdventOfCode._2024
                         return true;
                     }
                     recordedPositions.Add((gPos, guard));
-                    if (!InBounds(newPos.x, newPos.y))
+                    if (!InBounds(newPos))
                     {
                         return false;
                     }
@@ -106,7 +105,7 @@ namespace AdventOfCode._2024
                     }
                     gPos = newPos;
                 }
-                while (InBounds(newPos.x, newPos.y));
+                while (InBounds(newPos));
                 return false;
             }
             finally
@@ -115,20 +114,7 @@ namespace AdventOfCode._2024
             }
         }
 
-        private void PrintMap(char[,] array)
-        {
-            Console.WriteLine();
-            for (int j = 0; j < array.GetLength(1); j++)
-            { 
-                for (int i = 0; i < array.GetLength(0); i++)
-                {
-                    Console.Write(array[i, j]);
-                }
-                Console.WriteLine();
-            }
-        }
-
-        private (int, int) Move()
+        private Pos Move()
         {
             return guard switch
             {
@@ -152,15 +138,15 @@ namespace AdventOfCode._2024
             };
         }
 
-        private ((int, int), char) FindGuard()
+        private (Pos, char) FindGuard()
         {
-            (int, int) result = guardPos;
+            Pos result = guardPos;
             char ch = '^';
             MatrixForEach((i, j, c) =>
             {
                 if (c == 'v' || c == '<' || c == '>' ||c == '^')
                 {
-                    result = (i, j);
+                    result = (j, i);
                     ch = c;
                 }
             });

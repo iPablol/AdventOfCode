@@ -82,11 +82,11 @@ namespace AdventOfCode
             Splitlines();
             char[,] result = new char[lines?.Length ?? 1, lines?[0].Length ?? 1];
 
-            for (int j = 0; j < rows; j++)
+            for (int i = 0; i < rows; i++)
             {
-                for (int i = 0; i < columns; i++)
+                for (int j = 0; j < columns; j++)
                 {
-                    result[i, j] = lines?[j][i] ?? ' ';
+                    result[i, j] = lines?[i][j] ?? ' ';
                 }
             }
             return result;

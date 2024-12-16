@@ -126,18 +126,6 @@ namespace AdventOfCode._2024
             };
         }
 
-        private char Turn(char guard)
-        {
-            return guard switch
-            {
-                'v' => '<',
-                '>' => 'v',
-                '<' => '^',
-                '^' => '>',
-                _ => '^'
-            };
-        }
-
         private (Pos, char) FindGuard()
         {
             Pos result = guardPos;

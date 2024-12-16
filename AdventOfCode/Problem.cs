@@ -114,6 +114,8 @@ namespace AdventOfCode
             }
         }
 
+        public void Swap(Pos a, Pos b) => (matrix[a.y, a.x], matrix[b.y, b.x]) = (matrix[b.y, b.x], matrix[a.y, a.x]);
+
         protected Pos Move(Pos position, char direction)
         {
             return direction switch
@@ -123,6 +125,43 @@ namespace AdventOfCode
                 '>' => (position.x + 1, position.y),
                 'v' => (position.x, position.y + 1),
                 _ => (0, 0)
+            };
+        }
+
+        public Pos? Find(char find)
+        {
+            Pos? result = null;
+            MatrixForEach((i, j, c) =>
+            {
+                if (c == find)
+                {
+                    result = (j, i);
+                }
+            });
+            return result;
+        }
+
+        public char Turn(char direction, bool clockwise = true)
+        {
+            return direction switch
+            {
+                'v' => clockwise ? '<' : '>',
+                '>' => clockwise ? 'v' : '^',
+                '<' => clockwise ? '^' : 'v',
+                '^' => clockwise ? '>' : '<',
+                _ => '^'
+            };
+        }
+
+        public Pos? Front(Pos pos, char direction)
+        {
+            return direction switch
+            {
+                'v' => matrix.SouthPos(pos),
+                '>' => matrix.EastPos(pos),
+                '<' => matrix.WestPos(pos),
+                '^' => matrix.NorthPos(pos),
+                _ => null
             };
         }
 
@@ -146,6 +185,8 @@ namespace AdventOfCode
             if (InBounds(pos)) { result.Add(pos); }
             return result;
         }
+
+        public int Adjacent(Pos pos, char c) => AdjacentPositions(pos).Where(x => matrix[x.y, x.x] == c).Count();
 
         public int OutOfBoundsAdjacentCount(Pos position)
         {

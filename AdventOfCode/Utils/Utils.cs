@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -179,6 +180,36 @@ namespace AdventOfCode
 
             return result;
         }
+
+        public static List<Pos> AdjacentPositions<T>(this T[,] matrix, Pos position)
+        {
+            List<Pos> result = [];
+            Pos pos = (position.x - 1, position.y);
+            if (matrix.InBounds(pos)) { result.Add(pos); }
+            pos = (position.x, position.y - 1);
+            if (matrix.InBounds(pos)) { result.Add(pos); }
+            pos = (position.x + 1, position.y);
+            if (matrix.InBounds(pos)) { result.Add(pos); }
+            pos = (position.x, position.y + 1);
+            if (matrix.InBounds(pos)) { result.Add(pos); }
+            return result;
+        }
+        public static int Adjacent<T>(this T[,] matrix, Pos pos, T c) => matrix.AdjacentPositions(pos).Where(x => matrix[x.y, x.x].Equals(c)).Count();
+
+        public static Pos? Front<T>(this T[,] matrix, Pos pos, char direction)
+        {
+            return direction switch
+            {
+                'v' => matrix.SouthPos(pos),
+                '>' => matrix.EastPos(pos),
+                '<' => matrix.WestPos(pos),
+                '^' => matrix.NorthPos(pos),
+                _ => null
+            };
+        }
+
+        public static void Swap<T>(this T[,] matrix, Pos a, Pos b) => (matrix[a.y, a.x], matrix[b.y, b.x]) = (matrix[b.y, b.x], matrix[a.y, a.x]);
+
         public static bool InBounds<T>(this T[,] matrix, Pos pos) => pos.x >= 0 && pos.y >= 0 && pos.y < matrix.GetLength(0) && pos.x < matrix.GetLength(1);
         public static bool InBounds<T>(this T[,] matrix, int x, int y) => matrix.InBounds((x, y));
 

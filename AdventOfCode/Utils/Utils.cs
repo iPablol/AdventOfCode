@@ -12,6 +12,7 @@ namespace AdventOfCode
 {
     public static class Utils
     {
+        public static bool IsDirection(this char c) => c == '>' || c == '<' || c == '^' || c == 'v';
         public static List<T> MatrixFlattened<T>(this T[,] matrix)
         {
             //List<T> flattened = [];
